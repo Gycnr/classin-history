@@ -1354,11 +1354,14 @@ hideSummary();
   restoreSummaryAnswers=function(){['q1','q2'].forEach(q=>{const text=read(q);if(typeof text==='string')document.getElementById('answer-'+q).value=text;});};
   ['q1','q2'].forEach(q=>{const field=document.getElementById('answer-'+q);field.maxLength=5000;field.setAttribute('aria-label',q==='q1'?'问题1答案':'问题2答案');field.addEventListener('input',()=>saveSummaryAnswer(q));});
   const originalCreateMarkers=createMarkers;
+  // City-level location, not the precise historical meeting venue.
+  nodes.find(node=>node.id==='xiangshan_zhong').fact='檀香山（Honolulu）位于太平洋中部、夏威夷群岛的瓦胡岛，约北纬21.31°、西经157.86°。地图标记表示城市位置。';
   createMarkers=function(){
     originalCreateMarkers();
     nodes.forEach(node=>{const entry=markers[node.id];entry.marker.setPosition(lessonPosition(node.lng,node.lat));entry.wrapper.setAttribute('role','button');entry.wrapper.setAttribute('aria-label',node.name);entry.wrapper.tabIndex=0;entry.wrapper.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onMarkerClick(node.id);}});});
     const positions=nodes.flatMap(n=>n.flashPositions||[]);
     flashMarkers.forEach((marker,i)=>marker.setPosition(lessonPosition(positions[i].lng,positions[i].lat)));
+    markers.xiangshan_zhong.marker.setLabel({direction:'left',content:'檀香山 · 夏威夷'});
     fitLessonMap();
     let resizeTimer;
     new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(fitLessonMap,250);}).observe(document.getElementById('map-container'));
