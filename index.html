@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <title>孙中山早年的革命活动 · ClassIn课堂版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #FDF5E6;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .header-bar {
+            position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(253, 245, 230, 0.95);
+            border-bottom: 2px solid #C41E3A;
+            padding: 8px 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 60px;
+            backdrop-filter: blur(4px);
+        }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .lesson-tag {
+            background: #C41E3A; color: #fff; font-size: 14px;
+            padding: 4px 10px; border-radius: 3px; font-weight: bold;
+        }
+        .version-tag {
+            background: #4CAF50; color: #fff; font-size: 13px;
+            padding: 4px 10px; border-radius: 3px; font-weight: bold;
+        }
+        .header-left h1 { font-size: 20px; color: #2C1810; font-weight: bold; }
+        .header-left h1 span { color: #C41E3A; }
+        .header-right { display: flex; gap: 8px; }
+        .btn {
+            padding: 8px 16px; border: 2px solid #C41E3A; background: transparent;
+            color: #C41E3A; border-radius: 6px; font-size: 15px; font-weight: bold;
+            cursor: pointer; min-height: 42px; display: flex; align-items: center;
+            justify-content: center; white-space: nowrap;
+            -webkit-tap-highlight-color: transparent; transition: all 0.2s;
+        }
+        .btn:hover, .btn:active { background: #C41E3A; color: #fff; }
+        .btn.active { background: #C41E3A; color: #fff; }
+        .btn-primary { background: #C41E3A; color: #fff; }
+        .btn-primary:hover { background: #A01830; }
+
+        .timeline-sidebar {
+            position: absolute; top: 60px; left: 0; bottom: 0;
+            width: 340px; z-index: 90;
+            background: rgba(253, 245, 230, 0.97);
+            border-right: 2px solid #C41E3A;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+        }
+        .timeline-sidebar h3 {
+            font-size: 18px; color: #C41E3A;
+            padding: 16px 16px 8px 16px;
+            text-align: center; letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .timeline-hint {
+            font-size: 13px; color: #8B4513; text-align: left;
+            padding: 0 16px 14px 16px;
+            border-bottom: 1px dashed #C41E3A;
+            line-height: 1.6;
+        }
+        .timeline-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 12px 20px 12px;
+        }
+        .timeline-empty {
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 8px;
+            background: #fff;
+            border: 2px solid #E8D8C8;
+            border-radius: 10px;
+            padding: 10px 10px 10px 8px;
+            margin-bottom: 10px;
+            align-items: flex-start;
+            transition: all 0.2s;
+            animation: itemIn 0.3s ease;
+        }
+        @keyframes itemIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline-item:hover { border-color: #C41E3A; }
+        .ti-num {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #C41E3A;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ti-body { flex: 1; min-width: 0; }
+        .ti-year {
+            font-size: 12px; color: #8B4513;
+            font-weight: bold; margin-bottom: 2px;
+        }
+        .ti-place {
+            font-size: 15px; color: #C41E3A;
+            font-weight: bold; margin-bottom: 2px;
+        }
+        .ti-event {
+            font-size: 13px; color: #333;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+        .ti-controls {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .ti-btn {
+            width: 28px; height: 24px;
+            border: 1px solid #dce3ed;
+            background: #fafbfd;
+            color: #666;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.15s;
+        }
+        .ti-btn:hover { background: #e8f0fa; border-color: #2d5fa0; color: #2d5fa0; }
+        .ti-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .ti-btn-del {
+            background: #fff5f5;
+            border-color: #f5c0c0;
+            color: #c0392b;
+        }
+        .ti-btn-del:hover { background: #fce8e8; }
+
+        #map-container {
+            position: absolute; top: 60px; left: 340px; right: 0; bottom: 0;
+        }
+
+        .legend {
+            position: absolute; bottom: 16px; right: 16px; z-index: 100;
+            background: rgba(253, 245, 230, 0.94);
+            border: 1px solid #C41E3A; border-radius: 8px;
+            padding: 10px 14px; font-size: 14px; color: #2C1810;
+            line-height: 1.8; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+        .legend-title {
+            font-weight: bold; color: #C41E3A; margin-bottom: 6px; font-size: 15px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .legend-dot {
+            width: 12px; height: 12px; background: #C41E3A; border: 1px solid #fff;
+            border-radius: 50% 50% 50% 0; transform: rotate(-45deg); flex-shrink: 0;
+        }
+        .legend-flag {
+            width: 12px; height: 12px; background: #FF8C00; border: 1px solid #fff;
+            border-radius: 50% 50% 50% 0; transform: rotate(-45deg); flex-shrink: 0;
+        }
+        .legend-dashed {
+            width: 24px; height: 0; border-top: 2px dashed #C41E3A; flex-shrink: 0;
+        }
+
+        .marker-wrap {
+            cursor: pointer; transition: transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .marker-wrap:hover { transform: scale(1.15); }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+        .marker-wrap.pulsing { animation: pulse 0.8s ease-in-out infinite; }
+
+        .modal-overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 5000;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.show { display: flex; }
+
+        .node-card {
+            background: #FDF5E6; border: 3px solid #C41E3A;
+            border-radius: 14px; padding: 24px 30px;
+            width: 900px; max-width: 94vw;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            font-size: 24px; color: #2C1810; line-height: 1.6;
+            position: relative;
+            max-height: 92vh; overflow-y: auto;
+            animation: cardIn 0.25s ease;
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .card-close {
+            position: absolute; top: 10px; right: 12px; background: none;
+            border: none; font-size: 32px; color: #8B4513; cursor: pointer;
+            width: 46px; height: 46px; display: flex;
+            align-items: center; justify-content: center; border-radius: 50%;
+            z-index: 10;
+        }
+        .card-close:hover { background: rgba(196, 30, 58, 0.1); }
+        .card-location {
+            font-size: 30px; font-weight: bold; color: #C41E3A;
+            margin-bottom: 4px;
+        }
+        .card-year { font-size: 24px; color: #8B4513; margin-bottom: 14px; }
+        .card-fact {
+            background: #FFF8F0; border-left: 5px solid #FF4500;
+            padding: 12px 16px; margin-bottom: 12px;
+            border-radius: 0 8px 8px 0; font-size: 24px; line-height: 1.6;
+        }
+        .card-material {
+            background: #F5F0E8; border: 2px dashed #C41E3A;
+            padding: 12px 16px; margin-bottom: 12px; border-radius: 8px;
+            font-size: 24px; color: #4A3520; font-style: italic; line-height: 1.6;
+        }
+        .card-material::before {
+            content: '📜 材料'; display: block; font-style: normal;
+            font-size: 24px; color: #C41E3A; font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .material-source {
+            display: block; text-align: right; font-size: 24px;
+            color: #8B4513; margin-top: 8px; font-style: normal;
+        }
+        .card-image {
+            width: 55%;
+            max-width: 460px;
+            border-radius: 8px;
+            margin: 0 auto 14px auto;
+            border: 1px solid #E8D8C8;
+            display: block;
+        }
+
+        .card-footer {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-add-timeline {
+            padding: 14px 36px;
+            background: #C41E3A;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            min-height: 52px;
+            transition: all 0.2s;
+        }
+        .btn-add-timeline:hover { background: #A01830; }
+        .btn-add-timeline.added {
+            background: #4CAF50;
+            cursor: default;
+        }
+
+        .info-table {
+            width: 100%; border-collapse: collapse;
+            margin-bottom: 12px; font-size: 24px;
+            background: #FFF8F0; border: 2px solid #C41E3A;
+            border-radius: 8px; overflow: hidden;
+        }
+        .info-table th {
+            background: #C41E3A; color: #fff; font-weight: bold;
+            padding: 10px 14px; text-align: left; font-size: 24px;
+            border-bottom: 2px solid #A01830;
+        }
+        .info-table td {
+            padding: 12px 14px; border-bottom: 1px solid #E8D8C8;
+            vertical-align: middle; font-size: 24px; line-height: 1.6;
+        }
+        .info-table tr:last-child td { border-bottom: none; }
+        .info-table td:first-child {
+            width: 160px; background: #FFEFE0;
+            font-weight: bold; color: #C41E3A;
+        }
+        .mask-answer {
+            display: inline-block; padding: 4px 20px; margin: 2px 0;
+            background: #4A3520; color: transparent;
+            border-radius: 6px; cursor: pointer;
+            user-select: none; -webkit-tap-highlight-color: transparent;
+            transition: all 0.3s; min-width: 100px;
+            letter-spacing: 2px; position: relative;
+        }
+        .mask-answer::after {
+            content: '点击揭晓'; color: #FDF5E6;
+            font-size: 24px; letter-spacing: 1px;
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+        .mask-answer.revealed {
+            background: #E8F5E9; color: #2E7D32;
+            padding: 4px 16px; font-weight: bold;
+            border: 2px solid #4CAF50;
+        }
+        .mask-answer.revealed::after { content: ''; }
+
+        .exile-stats {
+            background: #FFF8F0;
+            border: 2px solid #C41E3A;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            font-size: 24px;
+            line-height: 1.7;
+        }
+        .exile-stats .stat {
+            display: inline-block;
+            background: #FFEFE0;
+            color: #C41E3A;
+            font-weight: bold;
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin: 2px 4px;
+            font-size: 24px;
+        }
+        .exile-stats .highlight-num {
+            color: #C41E3A;
+            font-weight: bold;
+            font-size: 26px;
+        }
+        .exile-dialogue {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            padding: 16px 0;
+            flex-wrap: wrap;
+        }
+        .exile-dialogue.show {
+            display: flex;
+            animation: cardIn 0.4s ease;
+        }
+        .exile-dialogue img {
+            width: 200px;
+            max-width: 100%;
+            border-radius: 12px;
+            border: 3px solid #C41E3A;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            display: block;
+        }
+        .exile-dialogue .bubble {
+            position: relative;
+            background: #FFF3E0;
+            border: 3px solid #FF8C00;
+            border-radius: 18px;
+            padding: 22px 26px;
+            font-size: 24px;
+            color: #8B4513;
+            font-weight: bold;
+            line-height: 1.6;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            max-width: 420px;
+            flex-shrink: 0;
+        }
+        .exile-dialogue .bubble::before {
+            content: '';
+            position: absolute;
+            left: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            border-right: 18px solid #FF8C00;
+        }
+        .exile-dialogue .bubble::after {
+            content: '';
+            position: absolute;
+            left: -11px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 13px solid #FFF3E0;
+        }
+
+        /* ========== 悬浮小计时器（不遮挡界面） ========== */
+        .summary-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(253, 245, 230, 0.98); z-index: 7000;
+            overflow-y: auto; padding: 40px 20px;
+            flex-direction: column; align-items: center;
+        }
+        .summary-overlay.show { display: flex; }
+        .summary-overlay h2 {
+            font-size: 30px; color: #C41E3A;
+            margin-bottom: 30px; text-align: center;
+        }
+
+        .summary-final {
+            font-size: 28px; font-weight: bold; color: #C41E3A;
+            text-align: center; padding: 28px 40px;
+            border-top: 3px solid #C41E3A; border-bottom: 3px solid #C41E3A;
+            max-width: 900px; line-height: 1.6; letter-spacing: 2px;
+            background: linear-gradient(180deg, transparent, rgba(196, 30, 58, 0.05), transparent);
+            margin-top: 10px;
+        }
+
+        .discussion-block {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 30px;
+            background: #FFF8F0;
+            border: 3px solid #FF8C00;
+            border-radius: 14px;
+            padding: 24px 28px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        .discussion-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF8C00;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        .discussion-title::before {
+            content: '❓ ';
+        }
+        .discussion-material {
+            background: #F5F0E8;
+            border: 2px dashed #C41E3A;
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-size: 24px;
+            color: #4A3520;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        .discussion-material::before {
+            content: '📜 材料';
+            display: block;
+            font-style: normal;
+            font-size: 24px;
+            color: #C41E3A;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .discussion-material .material-source {
+            font-size: 24px;
+            margin-top: 8px;
+        }
+
+        .hint-small {
+            font-size: 16px;
+            color: #999;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .answer-area {
+            margin-top: 12px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            border: 2px solid #dce3ed;
+        }
+        .answer-area textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 2px solid #dce3ed;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 20px;
+            font-family: inherit;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            background: #fafbfd;
+            color: #2C1810;
+            -webkit-user-select: text !important;
+            user-select: text !important;
+            touch-action: manipulation;
+        }
+        .answer-area textarea:focus {
+            border-color: #2d5fa0;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(45, 95, 160, 0.15);
+        }
+        .answer-actions {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .btn-save {
+            padding: 8px 20px;
+            background: #2d5fa0;
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 44px;
+        }
+        .btn-save:hover { background: #1a3a6b; }
+        .save-status {
+            font-size: 16px;
+            color: #27ae60;
+        }
+
+        .summary-close {
+            margin-top: 30px; padding: 14px 60px; background: #C41E3A;
+            color: #fff; border: none; border-radius: 8px;
+            font-size: 24px; font-weight: bold; cursor: pointer;
+            min-height: 52px;
+        }
+
+        .loading-tip {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); z-index: 500;
+            text-align: center; color: #8B4513; font-size: 24px;
+        }
+        .loading-tip .spinner {
+            width: 42px; height: 42px; border: 5px solid #E8D8C8;
+            border-top: 5px solid #C41E3A; border-radius: 50%;
+            animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .footer-note {
+            position: absolute; bottom: 8px; left: 356px; z-index: 100;
+            font-size: 14px; color: #8B4513;
+            background: rgba(253, 245, 230, 0.8);
+            padding: 3px 10px; border-radius: 4px;
+        }
+
+        @media (max-width: 1100px) {
+            .node-card { width: 700px; padding: 22px 24px; }
+            .timeline-sidebar { width: 280px; }
+            #map-container { left: 280px; }
+            .footer-note { left: 296px; }
+            .header-left h1 { font-size: 16px; }
+            .btn { font-size: 13px; padding: 6px 10px; }
+            .exile-dialogue img { width: 160px; }
+            .exile-dialogue .bubble { font-size: 22px; padding: 20px 24px; }
+            .card-image { width: 65%; max-width: 400px; }
+        }
+
+        @media (max-width: 700px) {
+            .exile-dialogue { flex-direction: column; }
+            .exile-dialogue .bubble::before {
+                left: 50%;
+                top: -18px;
+                transform: translateX(-50%);
+                border-left: 14px solid transparent;
+                border-right: 14px solid transparent;
+                border-bottom: 18px solid #FF8C00;
+                border-top: none;
+                border-right: none;
+            }
+            .exile-dialogue .bubble::after {
+                left: 50%;
+                top: -11px;
+                transform: translateX(-50%);
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 13px solid #FFF3E0;
+                border-top: none;
+                border-right: none;
+            }
+        }
+    </style>
+<style>:root{--lesson-top:64px}.header-bar{top:0;height:64px}.timeline-sidebar,#map-container{top:var(--lesson-top)}.timeline-sidebar{width:340px}#map-container{left:340px}.timeline-list{min-height:100px}.timeline-hint{font-size:13px}.location-picker{margin:8px 12px;flex-shrink:0}.location-picker summary{cursor:pointer;font-size:13px;color:#8b4513}.location-choices{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.location-choices button{font:inherit;font-size:14px;min-height:42px;background:white;border:1px solid #d7bfb0;border-radius:6px;padding:8px;color:#8b2638;cursor:pointer}.local-status{padding:12px;font-size:12px;line-height:1.7;color:#725a42;border-top:1px solid #dec8b1}.image-placeholder{padding:18px;border:1px dashed #cdb89c;background:#f3eadc;color:#856e57;text-align:center;font-size:16px;border-radius:8px}.ti-btn{width:34px;height:34px}.node-card{max-width:calc(100vw - 32px);max-height:90dvh}.loading-tip{left:calc(50% + 170px);max-width:350px;pointer-events:none;line-height:1.8}.save-status{font-size:13px;color:#27643e;line-height:1.6}.btn-save{min-height:44px}button:focus-visible,summary:focus-visible{outline:3px solid #286bbb;outline-offset:3px}#workSheet{width:100vw;height:100dvh;max-width:100vw;max-height:100dvh;margin:0;border:0;background:#fdf5e6;color:#2c1810;padding:0}#workSheet header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 28px;background:#fdf5e6;border-bottom:2px solid #c41e3a;z-index:1}#workSheet h2{color:#c41e3a;font-size:26px}#workSheet main{max-width:1100px;margin:auto;padding:24px 32px}#workSheet h3{font-size:23px;color:#c41e3a;margin:16px 0}.work-timeline{counter-reset:events;list-style:none;padding:0;display:grid;gap:10px}.work-timeline li{counter-increment:events;position:relative;padding:14px 20px 14px 65px;border:1px solid #e0cbb9;background:#fffaf2;border-radius:10px}.work-timeline li:before{content:counter(events);position:absolute;left:16px;top:16px;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#c41e3a;color:white;font-weight:bold}.work-timeline b{font-size:21px}.work-timeline p{font-size:18px;margin-top:6px;line-height:1.5}.work-answer{white-space:pre-wrap;overflow-wrap:anywhere;font-size:24px;line-height:1.8;padding:20px;background:#fffaf2;border-left:4px solid #c41e3a;margin-bottom:24px}@media(max-width:1100px){.header-left h1{font-size:15px;max-width:250px}.lesson-tag{display:none}.header-right{gap:5px}.header-right .btn{padding:8px 10px}.timeline-sidebar{width:310px}#map-container{left:310px}.loading-tip{left:calc(50% + 155px);max-width:260px}.footer-note{left:320px}}@media(max-width:720px){:root{--lesson-top:100px}.header-bar{height:100px;flex-wrap:wrap;justify-content:center;gap:5px;padding:8px}.header-left h1{max-width:none;font-size:14px}.timeline-sidebar{width:52%}#map-container{left:52%}.timeline-hint{font-size:12px}.timeline-item{flex-wrap:wrap}.ti-controls{flex-direction:row;margin-left:auto}.legend,.footer-note{display:none}.loading-tip{left:76%;width:42%;font-size:14px;padding:8px}.card-fact,.card-material,.discussion-title,.discussion-material{font-size:19px}.node-card{padding:20px 16px}.summary-overlay{padding:24px 12px}#workSheet main{padding:16px}.work-answer{font-size:21px}.work-timeline b{font-size:19px}}
+</style></head>
+<body>
+
+    <div class="header-bar">
+        <div class="header-left">
+            <span class="lesson-tag">第8课</span>
+            <span class="version-tag">学生探究</span>
+            <h1>中国同盟会 · <span>孙中山早年的革命活动</span></h1>
+        </div>
+        <div class="header-right">
+            <button class="btn" id="btnRoute" onclick="toggleRoute()">🛤️ 行迹</button>
+            <button class="btn" id="btnSummary" onclick="showSummary()">📋 总结</button>
+            <button class="btn" id="btnReset" onclick="resetAll()">🔄 重置</button>
+        </div>
+    </div>
+
+    <div class="timeline-sidebar">
+        <h3>时间轴</h3>
+        <div class="timeline-hint">点击地图地点阅读材料，添加到时间轴，再用 ↑↓ 调整顺序。点击“总结”回答问题；点击“查看作答”集中展示排序和答案。</div>
+        <div class="timeline-list" id="timelineList">
+            <div class="timeline-empty">还没有添加事件<br>点击地图上的城市开始吧</div>
+        </div>
+    </div>
+
+    <div id="map-container"></div>
+
+    <div class="legend">
+        <div class="legend-title">图例</div>
+        <div class="legend-item"><span class="legend-dot"></span> 活动地点</div>
+        <div class="legend-item"><span class="legend-flag"></span> 兴中会</div>
+        <div class="legend-item"><span class="legend-dashed"></span> 革命活动路线</div>
+    </div>
+
+    <div class="footer-note">史实依据统编版《中国历史》八年级上册第8课</div>
+
+    <div class="loading-tip" id="loadingTip">
+        <div class="spinner"></div>
+        <div>正在加载地图...</div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="node-card" id="modalCard"></div>
+    </div>
+
+    <!-- 悬浮小计时器 -->
+<div class="summary-overlay" id="summaryOverlay">
+        <h2>孙中山早年革命活动的两次转变</h2>
+
+        <!-- 问题1 -->
+        <div style="width:100%;max-width:900px;">
+            <div style="font-size:24px;font-weight:bold;color:#FF8C00;margin-bottom:16px;">
+                ❓ 问题1：概括孙中山早年思想的两次转变。
+            </div>
+
+            <div class="answer-area">
+                <textarea id="answer-q1" placeholder="请概括孙中山早年思想的两次转变……"></textarea>
+                <div class="hint-small">提示：香港、广州→天津→檀香山</div>
+                <div class="answer-actions">
+                    <button class="btn-save" onclick="saveSummaryAnswer('q1')">保存本机答案</button>
+                    <span class="save-status" id="save-status-q1"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-final">“一个人的行迹，变成了一群人的方向。”</div>
+
+        <!-- 问题2 -->
+        <div class="discussion-block">
+            <div class="discussion-title">问题2：阅读材料，指出孙中山的地位。做一份人物报道提纲，概述孙中山早年为革命所作的努力。</div>
+            <div class="discussion-material">
+                孙逸仙者，近今谈革命者之初祖，实行革命者之北辰，此有耳目者所同认。……孙逸仙者，非一氏之私号，乃新中国新发现之名词也。有孙逸仙，而中国始可为……
+                <span class="material-source">——章士钊《孙逸仙·自序》</span>
+            </div>
+
+            <div class="answer-area">
+                <textarea id="answer-q2" placeholder="请写出你的回答……"></textarea>
+                <div class="answer-actions">
+                    <button class="btn-save" onclick="saveSummaryAnswer('q2')">保存本机答案</button>
+                    <span class="save-status" id="save-status-q2"></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="summary-close" onclick="hideSummary()">返回地图</button>
+    </div>
+
+    <script>
+        window._AMapSecurityConfig = {
+            securityJsCode: "cd594a29e180c92e56f72fbfc9e13220"
+        };
+    </script>
+    
+
+    <script>
+    // ==================== 安全 storage 封装 ====================
+    const safeStorage = (function() {
+        let memoryStore = {};
+        let available = false;
+        try {
+            const testKey = '__storage_test_' + Date.now();
+            localStorage.setItem(testKey, 'test');
+            localStorage.removeItem(testKey);
+            available = true;
+        } catch (e) {
+            available = false;
+            console.warn('localStorage 不可用，将使用内存存储。刷新页面后数据会丢失。');
+        }
+        return {
+            getItem: function(key) {
+                if (available) {
+                    try { return localStorage.getItem(key); } catch (e) { return memoryStore[key] || null; }
+                }
+                return memoryStore[key] || null;
+            },
+            setItem: function(key, value) {
+                if (available) {
+                    try { localStorage.setItem(key, value); return true; } catch (e) { memoryStore[key] = String(value); return false; }
+                }
+                memoryStore[key] = String(value);
+                return false;
+            },
+            removeItem: function(key) {
+                if (available) {
+                    try { localStorage.removeItem(key); } catch (e) {}
+                }
+                delete memoryStore[key];
+            },
+            isAvailable: function() { return available; }
+        };
+    })();
+
+    // ==================== 数据 ====================
+    const API_KEY = "3f1a07b8c3f6ee19737172b36b701cdb";
+
+    const nodes = [
+        {
+            id: "cuiheng", name: "翠亨村",
+            lng: 113.53, lat: 22.44,
+            focusZoom: 8,
+            label: "广东香山 · 孙中山诞生地（1866）", type: "dot",
+            img: "photo1.png", imgAlt: "童年孙中山听太平天国故事雕塑",
+            fact: "1866年，孙中山出生于广东香山（今中山）翠亨村一个农民家庭。童年时，他常听参加过太平天国运动的老人讲述洪秀全等人的故事，在心里埋下了革命的种子。",
+            material: "", materialSource: "", question: "", conflict: "", conflictAnswer: "",
+            timeline: { year: "1866", place: "翠亨村", event: "孙中山出生于广东香山翠亨村" }
+        },
+        {
+            id: "hongkong_guangzhou", name: "香港 · 广州",
+            lng: 114.17, lat: 22.28,
+            focusZoom: 7,
+            label: "在香港、广州两地学习医学", type: "dot",
+            fact: "",
+            material: "（孙中山认为）医术救人所济有限，……吾国人民之艰苦，皆不良之政治为之。",
+            materialSource: "——陈少白《兴中会革命史要》",
+            question: "根据材料，指出孙中山的思想转变。",
+            conflict: "", conflictAnswer: "",
+            timeline: { year: "1883-1892", place: "香港·广州", event: "学医期间，从“医人”转向“医国”" }
+        },
+        {
+            id: "tianjin", name: "天津",
+            lng: 117.20, lat: 39.13,
+            focusZoom: 7,
+            label: "上书李鸿章（1894）", type: "dot",
+            img: "photo6.png", imgAlt: "孙中山上李鸿章书",
+            fact: "1894年夏，孙中山北上天津，上书李鸿章。",
+            material: "材料1：试观日本一国，与西人通商后于我，仿效西方亦后于我，其维新之政为日几何，而今日成效已大有可观。——孙中山《上李鸿章书》，1894年\n\n材料2：革命为惟一法门，……我们必须倾覆满洲政府，建设民国。革命成功之日……废除专制，实行共和。——孙中山《在檀香山正埠荷梯厘街戏院的演说》",
+            materialSource: "",
+            question: "从材料1到材料2，孙中山的思想又发生了什么转变？",
+            conflict: "上书李鸿章被冷遇后，如果你是他，会怎么办？",
+            conflictAnswer: "失望之余，他认识到，只有推翻清政府的专制统治，才能拯救中国。同年11月，孙中山在檀香山联合华侨，成立兴中会。",
+            timeline: { year: "1894", place: "天津", event: "上书李鸿章，从“改良”转向“革命”" }
+        },
+        {
+            id: "xiangshan_zhong", name: "檀香山",
+            lng: -157.86, lat: 21.31,
+            focusZoom: 7,
+            label: "成立兴中会（1894.11）", type: "flag",
+            img: "photo2.png", imgAlt: "兴中会誓词",
+            fact: "",
+            material: "",
+            materialSource: "",
+            question: "请梳理兴中会的相关信息：",
+            infoTable: true, conflict: "", conflictAnswer: "",
+            timeline: { year: "1894.11", place: "檀香山", event: "成立兴中会——第一个资产阶级革命团体" }
+        },
+        {
+            id: "guangzhou", name: "广州",
+            lng: 113.26, lat: 23.13,
+            focusZoom: 7,
+            label: "筹划广州起义（1895.10）", type: "dot",
+            fact: "1895年10月，孙中山筹划广州起义，因泄密未及发动而失败。陆皓东等人被捕牺牲。",
+            material: "“今事虽不成，此心甚慰，但一我可杀，而继我而起者，不可尽杀！”——陆皓东\n\n“中国有史以来，为共和革命而牺牲第一人。”——孙中山评价陆皓东",
+            materialSource: "",
+            question: "",
+            conflict: "", conflictAnswer: "",
+            timeline: { year: "1895.10", place: "广州", event: "筹划广州起义，因泄密失败" }
+        },
+        {
+            id: "liuwang", name: "流亡海外",
+            lng: 139.64, lat: 35.44,
+            focusZoom: 4,
+            label: "流亡海外，发展革命组织", type: "dot",
+            img: "photo4.png", imgAlt: "孙中山断发改装",
+            fact: "广州起义失败后，孙中山遭到清政府通缉，被港英当局驱逐出境。从此，他断发改装，流亡海外，先后在日、美、英等国考察社会实际，发展革命组织。",
+            material: "", materialSource: "", question: "", conflict: "", conflictAnswer: "",
+            flashPositions: [
+                { name: "日本横滨", lng: 139.64, lat: 35.44, time: "1895.11" },
+                { name: "美国旧金山", lng: -122.42, lat: 37.77, time: "1896.6" },
+                { name: "加拿大温哥华", lng: -123.12, lat: 49.28, time: "1897" },
+                { name: "蒙特利尔", lng: -73.57, lat: 45.50, time: "1897" },
+                { name: "纽约", lng: -74.01, lat: 40.71, time: "1896" }
+            ],
+            timeline: { year: "1895-1896", place: "日本·美国·加拿大", event: "流亡海外，继续发展革命组织" }
+        },
+        {
+            id: "london", name: "伦敦",
+            lng: -0.13, lat: 51.51,
+            focusZoom: 7,
+            label: "伦敦蒙难（1896.9—1897.7）", type: "dot",
+            img: "photo5.png", imgAlt: "《伦敦蒙难记》",
+            fact: "1896年秋，孙中山在伦敦被清政府使馆人员诱捕，后因英国政府干涉获释。此事在当时成为国际事件，各种报纸争相报道。他借此机会撰文宣扬自己的政治主张，使国际社会对孙中山的革命思想有了一定的认识。",
+            material: "", materialSource: "",
+            question: "",
+            conflict: "", conflictAnswer: "",
+            timeline: { year: "1896.9", place: "伦敦", event: "伦敦蒙难，国际声望提升" }
+        }
+    ];
+
+    // ==================== 状态 ====================
+    let map = null;
+    let markers = {};
+    let flashMarkers = [];
+    let polylines = [];
+    let routeShown = false;
+    let exileCardShown = false;
+let pauseTimeLeft = 300;
+    let timelineItems = [];
+
+    const GLOBAL_CENTER = [160, 25];
+    const GLOBAL_ZOOM = 2;
+
+    // ==================== 水滴 SVG ====================
+    function markerSvg(color, done) {
+        const fill = done ? '#4CAF50' : color;
+        return `<svg viewBox="0 0 36 46" width="36" height="46" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 44 
+                     C18 44 4 26 4 16 
+                     A14 14 0 0 1 32 16 
+                     C32 26 18 44 18 44 Z" 
+                  fill="${fill}" stroke="white" stroke-width="2"/>
+        </svg>`;
+    }
+
+    // ==================== 初始化地图 ====================
+    function initMap() {
+        AMapLoader.load({
+            key: API_KEY,
+            version: "2.0",
+            plugins: ["AMap.Scale"]
+        }).then((AMap) => {
+            document.getElementById('loadingTip').style.display = 'none';
+
+            map = new AMap.Map("map-container", {
+                viewMode: "2D",
+                zoom: GLOBAL_ZOOM,
+                center: GLOBAL_CENTER,
+                mapStyle: "amap://styles/whitesmoke",
+                lang: "zh_cn",
+                zooms: [1, 18],
+                showLabel: true
+            });
+
+            map.addControl(new AMap.Scale({ position: 'LB' }));
+
+
+            createMarkers();
+            renderTimeline();
+
+
+        }).catch((e) => {
+            console.error("地图加载失败:", e);
+            document.getElementById('loadingTip').innerHTML =
+                '地图暂未加载，请检查网络后刷新页面。';
+        });
+    }
+
+    // ==================== 创建标记 ====================
+    function createMarkers() {
+        nodes.forEach((node, index) => {
+            const baseColor = (node.type === 'flag') ? '#FF8C00' : '#C41E3A';
+            const isDone = timelineItems.some(item => item.nodeId === node.id);
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'marker-wrap';
+            wrapper.style.position = 'relative';
+            wrapper.innerHTML = markerSvg(baseColor, isDone);
+            wrapper.addEventListener('click', (e) => {
+                e.stopPropagation();
+                onMarkerClick(node.id);
+            });
+
+            const marker = new AMap.Marker({
+                position: [node.lng, node.lat],
+                content: wrapper,
+                offset: new AMap.Pixel(-18, -44),
+                zIndex: 100 + index,
+                title: node.name
+            });
+
+            map.add(marker);
+            markers[node.id] = { marker, node, index, wrapper };
+
+            if (node.flashPositions) {
+                node.flashPositions.forEach((pos, i) => {
+                    const flashWrapper = document.createElement('div');
+                    flashWrapper.className = 'marker-wrap pulsing';
+                    flashWrapper.style.position = 'relative';
+                    flashWrapper.innerHTML = markerSvg('#FF4500', false);
+                    flashWrapper.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        onMarkerClick('liuwang');
+                    });
+
+                    const flashMarker = new AMap.Marker({
+                        position: [pos.lng, pos.lat],
+                        content: flashWrapper,
+                        offset: new AMap.Pixel(-18, -44),
+                        zIndex: 200 + i,
+                        title: pos.name
+                    });
+                    map.add(flashMarker);
+                    flashMarkers.push(flashMarker);
+                });
+            }
+        });
+
+        toggleFlashMarkers(false);
+    }
+
+    // ==================== 刷新标记颜色 ====================
+    function refreshMarkerColors() {
+        nodes.forEach(node => {
+            const data = markers[node.id];
+            if (!data || !data.wrapper) return;
+            const baseColor = (node.type === 'flag') ? '#FF8C00' : '#C41E3A';
+            const isDone = timelineItems.some(item => item.nodeId === node.id);
+            data.wrapper.innerHTML = markerSvg(baseColor, isDone);
+        });
+    }
+
+    // ==================== 时间轴存储 ====================
+    function saveTimelineToStorage() {
+        try {
+            safeStorage.setItem('classin_legacy_timeline_items', JSON.stringify(timelineItems));
+        } catch (e) {
+            console.warn('保存时间轴失败:', e);
+        }
+    }
+
+    function restoreTimelineFromStorage() {
+        try {
+            const saved = safeStorage.getItem('classin_legacy_timeline_items');
+            if (saved) {
+                const arr = JSON.parse(saved);
+                if (Array.isArray(arr)) timelineItems = arr;
+            }
+        } catch (e) {
+            console.warn('恢复时间轴失败:', e);
+            timelineItems = [];
+        }
+    }
+
+    // ==================== 渲染时间轴 ====================
+    function renderTimeline() {
+        const list = document.getElementById('timelineList');
+        if (!list) return;
+
+        if (timelineItems.length === 0) {
+            list.innerHTML = '<div class="timeline-empty">还没有添加事件<br>点击地图上的城市开始吧</div>';
+            return;
+        }
+
+        let html = '';
+        timelineItems.forEach((item, idx) => {
+            const isFirst = idx === 0;
+            const isLast = idx === timelineItems.length - 1;
+            html += `<div class="timeline-item">
+                <div class="ti-num">${idx + 1}</div>
+                <div class="ti-body">
+                    <div class="ti-year">${item.year}</div>
+                    <div class="ti-place">${item.place}</div>
+                    <div class="ti-event">${item.event}</div>
+                </div>
+                <div class="ti-controls">
+                    <button class="ti-btn" onclick="moveUp(${idx})" ${isFirst ? 'disabled' : ''} title="上移">▲</button>
+                    <button class="ti-btn" onclick="moveDown(${idx})" ${isLast ? 'disabled' : ''} title="下移">▼</button>
+                    <button class="ti-btn ti-btn-del" onclick="removeItem(${idx})" title="删除">✕</button>
+                </div>
+            </div>`;
+        });
+        list.innerHTML = html;
+    }
+
+    // ==================== 时间轴操作 ====================
+    function addToTimeline(nodeId) {
+        if (timelineItems.some(item => item.nodeId === nodeId)) {
+            return false;
+        }
+        const node = nodes.find(n => n.id === nodeId);
+        if (!node || !node.timeline) return false;
+
+        timelineItems.push({
+            nodeId: node.id,
+            year: node.timeline.year,
+            place: node.timeline.place,
+            event: node.timeline.event
+        });
+
+        saveTimelineToStorage();
+        renderTimeline();
+        refreshMarkerColors();
+        return true;
+    }
+
+    function removeItem(idx) {
+        timelineItems.splice(idx, 1);
+        saveTimelineToStorage();
+        renderTimeline();
+        refreshMarkerColors();
+    }
+
+    function moveUp(idx) {
+        if (idx <= 0) return;
+        const tmp = timelineItems[idx];
+        timelineItems[idx] = timelineItems[idx - 1];
+        timelineItems[idx - 1] = tmp;
+        saveTimelineToStorage();
+        renderTimeline();
+    }
+
+    function moveDown(idx) {
+        if (idx >= timelineItems.length - 1) return;
+        const tmp = timelineItems[idx];
+        timelineItems[idx] = timelineItems[idx + 1];
+        timelineItems[idx + 1] = tmp;
+        saveTimelineToStorage();
+        renderTimeline();
+    }
+
+    // ==================== 点击标记 ====================
+    function onMarkerClick(nodeId) {
+        const nodeData = markers[nodeId] || { node: nodes.find(n => n.id === nodeId) };
+        if (!nodeData.node) return;
+        const node = nodeData.node;
+
+        if (node.flashPositions) {
+            toggleFlashMarkers(true);
+        }
+
+        const cardHtml = buildCardHtml(node);
+        document.getElementById('modalCard').innerHTML = cardHtml;
+        document.getElementById('modalOverlay').classList.add('show');
+    }
+
+    // ==================== 构建卡片 ====================
+    function buildCardHtml(node) {
+        const isAdded = timelineItems.some(item => item.nodeId === node.id);
+
+        let html = '';
+        html += `<button class="card-close" onclick="closeInfoWindow()">✕</button>`;
+        html += `<div class="card-location">${node.name}</div>`;
+        html += `<div class="card-year">${node.label}</div>`;
+
+        if (node.img) {
+            html += `<img src="${node.img}" alt="${node.imgAlt || ''}" class="card-image"
+                onerror="missingLessonImage(this)">`;
+        }
+
+        if (node.fact) {
+            html += `<div class="card-fact">${node.fact.replace(/\n/g, '<br>')}</div>`;
+        }
+
+        if (node.material) {
+            html += `<div class="card-material">${node.material.replace(/\n/g, '<br>')}`;
+            if (node.materialSource) {
+                html += `<span class="material-source">${node.materialSource}</span>`;
+            }
+            html += `</div>`;
+        }
+
+        if (node.infoTable) {
+            html += `<table class="info-table">
+                <tr><th style="width:160px;">项目</th><th>内容（点击揭晓）</th></tr>
+                <tr><td>时间</td><td><span class="mask-answer" onclick="revealAnswer(this)">1894年11月</span></td></tr>
+                <tr><td>地点</td><td><span class="mask-answer" onclick="revealAnswer(this)">檀香山</span></td></tr>
+                <tr><td>宗旨</td><td><span class="mask-answer" onclick="revealAnswer(this)">振兴中华</span></td></tr>
+                <tr><td>誓词</td><td><span class="mask-answer" onclick="revealAnswer(this)">驱除鞑虏，恢复中国，创立合众政府</span></td></tr>
+                <tr><td>地位</td><td><span class="mask-answer" onclick="revealAnswer(this)">近代中国第一个资产阶级革命团体</span></td></tr>
+            </table>`;
+        }
+
+        if (node.conflict) {
+            html += `<div class="card-conflict" id="conflict-${node.id}">${node.conflict}</div>`;
+            html += `<div class="card-conflict-answer" id="conflict-answer-${node.id}">${node.conflictAnswer}</div>`;
+            html += `<div style="text-align:center;margin:10px 0;">
+                <button class="btn" onclick="toggleConflict('${node.id}')" style="border-color:#FF8C00;color:#FF8C00;font-size:20px;">⚡ 想一想</button>
+            </div>`;
+        }
+
+        html += `<div class="card-footer">
+            <button class="btn-add-timeline ${isAdded ? 'added' : ''}" 
+                    id="btn-add-${node.id}"
+                    onclick="handleAddToTimeline('${node.id}')"
+                    ${isAdded ? 'disabled' : ''}>
+                ${isAdded ? '✓ 已加入时间轴' : '＋ 添加到时间轴'}
+            </button>
+        </div>`;
+
+        return html;
+    }
+
+    function revealAnswer(el) { el.classList.add('revealed'); }
+
+    function toggleConflict(nodeId) {
+        const conflictEl = document.getElementById(`conflict-${nodeId}`);
+        const answerEl = document.getElementById(`conflict-answer-${nodeId}`);
+        if (conflictEl && answerEl) {
+            conflictEl.classList.add('show');
+            setTimeout(() => answerEl.classList.add('show'), 500);
+        }
+    }
+
+    // ==================== 添加到时间轴 ====================
+    function handleAddToTimeline(nodeId) {
+        const success = addToTimeline(nodeId);
+        if (success) {
+            const btn = document.getElementById(`btn-add-${nodeId}`);
+            if (btn) {
+                btn.textContent = '✓ 已加入时间轴';
+                btn.classList.add('added');
+                btn.disabled = true;
+            }
+        }
+    }
+
+    // ==================== 关闭卡片 ====================
+    function closeInfoWindow() {
+        document.getElementById('modalOverlay').classList.remove('show');
+    }
+
+    // ==================== 闪烁标记 ====================
+    function toggleFlashMarkers(show) {
+        flashMarkers.forEach(m => { if (show) m.show(); else m.hide(); });
+    }
+
+    // ==================== 行迹 ====================
+    function toggleRoute() {
+        if (!routeShown) {
+            routeShown = true;
+            document.getElementById('btnRoute').classList.add('active');
+            drawRoute();
+        } else {
+            if (!exileCardShown) {
+                exileCardShown = true;
+                showExileCard();
+            }
+        }
+    }
+
+    function drawRoute() { if (!map) { showExileCard(); return; }
+        clearRoute();
+        const mainPath = [
+            { lng: 113.53, lat: 22.44 },
+            { lng: 114.17, lat: 22.28 },
+            { lng: 117.20, lat: 39.13 },
+            { lng: -157.86, lat: 21.31 },
+            { lng: 113.26, lat: 23.13 },
+            { lng: 139.64, lat: 35.44 },
+            { lng: -122.42, lat: 37.77 },
+            { lng: -123.12, lat: 49.28 },
+            { lng: -73.57, lat: 45.50 },
+            { lng: -74.01, lat: 40.71 },
+            { lng: -0.13, lat: 51.51 }
+        ];
+        function buildPath(from, to) { return [lessonPosition(from.lng,from.lat),lessonPosition(to.lng,to.lat)]; }
+        for (let i = 0; i < mainPath.length - 1; i++) {
+            const path = buildPath(mainPath[i], mainPath[i + 1]);
+            const polyline = new AMap.Polyline({
+                path: path,
+                strokeColor: "#C41E3A",
+                strokeWeight: 2,
+                strokeOpacity: 0.9,
+                strokeStyle: "dashed",
+                lineJoin: 'round',
+                lineCap: 'round',
+                showDir: false,
+                zIndex: 50 + i
+            });
+            map.add(polyline);
+            polylines.push(polyline);
+        }
+    }
+
+    function clearRoute() {
+        polylines.forEach(p => map.remove(p));
+        polylines = [];
+    }
+
+    // ==================== 流亡全貌 ====================
+    function showExileCard() {
+        const html = `
+            <button class="card-close" onclick="closeInfoWindow()">✕</button>
+            <div class="card-location">🌏 流亡海外·全貌</div>
+            <div class="card-year">1895—1911年 · 16年流亡生涯</div>
+            <div class="exile-stats">
+                流亡期间，孙中山创办报刊、四处演讲、宣传动员革命、募捐筹集经费、筹建学校……
+                <div style="margin-top:14px;line-height:2.0;">
+                    <span class="stat"><span class="highlight-num">4</span> 次横渡太平洋</span>
+                    <span class="stat"><span class="highlight-num">4</span> 次横渡印度洋</span>
+                    <span class="stat"><span class="highlight-num">6</span> 次横渡大西洋</span>
+                    <span class="stat"><span class="highlight-num">4</span> 次到马来西亚</span>
+                    <span class="stat"><span class="highlight-num">4</span> 次到美国</span>
+                    <span class="stat"><span class="highlight-num">4</span> 次到英法</span>
+                    <span class="stat"><span class="highlight-num">6</span> 次到越南</span>
+                    <span class="stat"><span class="highlight-num">9</span> 次到新加坡</span>
+                    <span class="stat"><span class="highlight-num">2</span> 次到泰国</span>
+                    <span class="stat"><span class="highlight-num">15</span> 次到日本</span>
+                </div>
+                <div style="margin-top:16px;text-align:center;font-size:24px;font-weight:bold;color:#C41E3A;">
+                    总计行程达 <span class="highlight-num">20万公里</span>，相当于绕地球 <span class="highlight-num">5圈</span>！
+                </div>
+            </div>
+            <div style="text-align:center;margin:18px 0;">
+                <button class="btn btn-primary" onclick="showExileDialogue()">继续 → 看孙中山怎么说</button>
+            </div>
+            <div class="exile-dialogue" id="exileDialogue">
+                <img src="photo7.png" alt="孙中山"
+                    onerror="missingLessonImage(this)">
+                <div class="bubble">
+                    吾志所向，一往无前，<br>愈挫愈奋，再接再厉！
+                </div>
+            </div>
+        `;
+        document.getElementById('modalCard').innerHTML = html;
+        document.getElementById('modalOverlay').classList.add('show');
+    }
+
+    function showExileDialogue() {
+        const d = document.getElementById('exileDialogue');
+        if (d) d.classList.add('show');
+    }
+
+    // ==================== 总结页答案保存 ====================
+    function saveSummaryAnswer(qid) {
+        const textarea = document.getElementById('answer-' + qid);
+        if (!textarea) return;
+        const text = textarea.value.trim();
+        if (!text) { alert('请先写下你的答案'); return; }
+        const record = {
+            answer: text,
+            time: new Date().toLocaleString('zh-CN')
+        };
+        try {
+            safeStorage.setItem('classin_legacy_summary_' + qid, JSON.stringify(record));
+            const statusEl = document.getElementById('save-status-' + qid);
+            if (statusEl) statusEl.textContent = '已保存 · ' + record.time;
+        } catch (e) {
+            alert('保存失败，请检查浏览器设置');
+        }
+    }
+
+    function restoreSummaryAnswers() {
+        ['q1', 'q2'].forEach(qid => {
+            try {
+                const saved = safeStorage.getItem('classin_legacy_summary_' + qid);
+                if (!saved) return;
+                const record = JSON.parse(saved);
+                const textarea = document.getElementById('answer-' + qid);
+                if (textarea && record.answer) {
+                    textarea.value = record.answer;
+                    const statusEl = document.getElementById('save-status-' + qid);
+                    if (statusEl) statusEl.textContent = '上次保存 · ' + record.time;
+                }
+            } catch (e) {}
+        });
+    }
+
+    // ==================== 总结页 ====================
+    function showSummary() {
+        document.getElementById('summaryOverlay').classList.add('show');
+
+    }
+    function hideSummary() { document.getElementById('summaryOverlay').classList.remove('show'); }
+
+    // ==================== 重置 ====================
+    function resetAll() {
+        if (!confirm('确定要清空所有时间轴和答案吗？')) return;
+        closeInfoWindow();
+hideSummary();
+        routeShown = false;
+        exileCardShown = false;
+        document.getElementById('btnRoute').classList.remove('active');
+        clearRoute();
+        toggleFlashMarkers(false);
+        timelineItems = [];
+        safeStorage.removeItem('classin_legacy_timeline_items');
+        safeStorage.removeItem('classin_legacy_summary_q1');
+        safeStorage.removeItem('classin_legacy_summary_q2');
+        ['q1', 'q2'].forEach(qid => {
+            const ta = document.getElementById('answer-' + qid);
+            if (ta) ta.value = '';
+            const st = document.getElementById('save-status-' + qid);
+            if (st) st.textContent = '';
+        });
+        renderTimeline();
+        refreshMarkerColors();
+        if (map) {
+            map.setZoomAndCenter(GLOBAL_ZOOM, GLOBAL_CENTER);
+        }
+    }
+
+    // ==================== 键盘 ====================
+    function handleKeydown(e) {
+        if (e.target.closest('input, textarea, select, [contenteditable]') || e.isComposing) return;
+        if (e.key === 'r' || e.key === 'R') resetAll();
+        if (e.key === 'l' || e.key === 'L') toggleRoute();
+        if (e.key === 'Escape') closeInfoWindow();
+    }
+
+    // ==================== 遮罩点击关闭 ====================
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeInfoWindow();
+        }
+    });
+
+    // ==================== 页面加载 ====================
+
+    </script>
+<script>function missingLessonImage(img) {
+  const placeholder = document.createElement('div');
+  placeholder.className = 'image-placeholder';
+  placeholder.textContent = '图片素材待补充 · ' + (img.alt || '教学图片');
+  img.replaceWith(placeholder);
+}
+(function () {
+  const prefix='classin_history_v1:';
+  const status=document.createElement('div');status.id='localSaveStatus';status.className='local-status';status.setAttribute('role','status');
+  document.querySelector('.timeline-sidebar').append(status);
+  function save(kind,value){const ok=safeStorage.setItem(prefix+kind,JSON.stringify(value));const text=ok?'作答已自动保存在本机':'当前仅保留在页面内，请勿刷新或关闭';status.textContent=text;return text;}
+  function read(kind){try{return JSON.parse(safeStorage.getItem(prefix+kind));}catch{return null;}}
+  saveTimelineToStorage=function(){save('timeline',timelineItems.map(item=>item.nodeId));};
+  restoreTimelineFromStorage=function(){const ids=read('timeline');timelineItems=(Array.isArray(ids)?[...new Set(ids)]:[]).map(id=>nodes.find(n=>n.id===id)).filter(Boolean).map(n=>({nodeId:n.id,...n.timeline}));renderTimeline();};
+  saveSummaryAnswer=function(qid){const field=document.getElementById('answer-'+qid);document.getElementById('save-status-'+qid).textContent=save(qid,field.value);};
+  restoreSummaryAnswers=function(){['q1','q2'].forEach(q=>{const text=read(q);if(typeof text==='string')document.getElementById('answer-'+q).value=text;});};
+  ['q1','q2'].forEach(q=>{const field=document.getElementById('answer-'+q);field.maxLength=5000;field.setAttribute('aria-label',q==='q1'?'问题1答案':'问题2答案');field.addEventListener('input',()=>saveSummaryAnswer(q));});
+  const originalCreateMarkers=createMarkers;
+  createMarkers=function(){
+    originalCreateMarkers();
+    nodes.forEach(node=>{const entry=markers[node.id];entry.marker.setPosition(lessonPosition(node.lng,node.lat));entry.wrapper.setAttribute('role','button');entry.wrapper.setAttribute('aria-label',node.name);entry.wrapper.tabIndex=0;entry.wrapper.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onMarkerClick(node.id);}});});
+    const positions=nodes.flatMap(n=>n.flashPositions||[]);
+    flashMarkers.forEach((marker,i)=>marker.setPosition(lessonPosition(positions[i].lng,positions[i].lat)));
+    fitLessonMap();
+    map.on('resize',fitLessonMap);
+  };
+  function fitLessonMap(){if(map)map.setFitView(Object.values(markers).map(entry=>entry.marker),true,[65,85,65,65],3);}
+  const view=document.createElement('button');view.className='btn';view.id='viewWork';view.textContent='查看作答';view.onclick=showWork;document.querySelector('.header-right').prepend(view);
+  const sheet=document.createElement('dialog');sheet.id='workSheet';sheet.innerHTML='<header><h2>我的作答</h2><button class="btn" id="closeWork">返回课件</button></header><main id="workContent"></main>';
+  document.body.append(sheet);document.getElementById('closeWork').onclick=()=>sheet.close();
+  function showWork(){const content=document.getElementById('workContent');content.replaceChildren();const heading=document.createElement('h3');heading.textContent='时间轴排序';content.append(heading);if(!timelineItems.length){const p=document.createElement('p');p.textContent='还没有添加事件';content.append(p);}else{const list=document.createElement('ol');list.className='work-timeline';timelineItems.forEach(item=>{const li=document.createElement('li');const title=document.createElement('b');title.textContent=item.place+' · '+item.year;const p=document.createElement('p');p.textContent=item.event;li.append(title,p);list.append(li);});content.append(list);}
+   ['q1','q2'].forEach((q,i)=>{const h=document.createElement('h3');h.textContent=i===0?'问题1 · 孙中山早年思想的两次转变':'问题2 · 孙中山的地位与早年的革命努力';const answer=document.createElement('p');answer.className='work-answer';answer.textContent=document.getElementById('answer-'+q).value||'尚未作答';content.append(h,answer);});sheet.showModal();}
+  resetAll=function(){if(!confirm('清空这台设备上的排序和两道题答案？其他设备不受影响。'))return;closeInfoWindow();hideSummary();sheet.close();clearRoute();toggleFlashMarkers(false);routeShown=false;exileCardShown=false;document.getElementById('btnRoute').classList.remove('active');timelineItems=[];renderTimeline();refreshMarkerColors();saveTimelineToStorage();['q1','q2'].forEach(q=>{document.getElementById('answer-'+q).value='';saveSummaryAnswer(q);});fitLessonMap();};
+  restoreTimelineFromStorage();restoreSummaryAnswers();status.textContent='作答仅保留在本机，通过 ClassIn 查看学生画面';
+  document.addEventListener('keydown',handleKeydown);
+  function mapUnavailable(){document.getElementById('loadingTip').textContent='地图暂未加载，请检查网络后刷新页面。已保存的排序和答案仍保留在本机。';}
+  const loader=document.createElement('script');loader.src='https://webapi.amap.com/loader.js';loader.onload=()=>{try{initMap();}catch{mapUnavailable();}};loader.onerror=mapUnavailable;document.head.append(loader);
+  setTimeout(()=>{if(!map)mapUnavailable();},10000);
+})();
+function lessonPosition(lng,lat){return new AMap.LngLat(lng < -30 ? lng+360 : lng,lat,true);}
+</script></body>
+</html>
