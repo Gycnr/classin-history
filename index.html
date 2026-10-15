@@ -622,7 +622,7 @@
         </div>
     </div>
 
-    <div id="map-container"></div>
+    <div id="map-container"><div id="lesson-map"></div></div>
 
     <div class="legend">
         <div class="legend-title">图例</div>
@@ -859,13 +859,13 @@ let pauseTimeLeft = 300;
         }).then((AMap) => {
             document.getElementById('loadingTip').style.display = 'none';
 
-            map = new AMap.Map("map-container", {
+            map = new AMap.Map("lesson-map", {
                 viewMode: "2D",
                 zoom: GLOBAL_ZOOM,
                 center: GLOBAL_CENTER,
                 mapStyle: "amap://styles/whitesmoke",
                 lang: "zh_cn",
-                zooms: [1, 18],
+                zooms: [2, 18],
                 showLabel: true
             });
 
@@ -1343,6 +1343,14 @@ hideSummary();
   img.replaceWith(placeholder);
 }
 (function () {
+  const mapFrame=document.getElementById('map-container');
+  const mapCanvas=document.getElementById('lesson-map');
+  function sizeMapCanvas(){
+    // AMap stops at zoom 2. Preserve a complete world overview on smaller tablets.
+    const scale=Math.min(1,mapFrame.clientWidth/1100);
+    mapCanvas.style.cssText='width:'+mapFrame.clientWidth/scale+'px;height:'+mapFrame.clientHeight/scale+'px;transform-origin:top left;transform:scale('+scale+');';
+  }
+  sizeMapCanvas();
   const prefix='classin_history_v1:';
   const status=document.createElement('div');status.id='localSaveStatus';status.className='local-status';status.setAttribute('role','status');
   document.querySelector('.timeline-sidebar').append(status);
@@ -1364,7 +1372,7 @@ hideSummary();
     markers.xiangshan_zhong.marker.setLabel({direction:'left',content:'檀香山 · 夏威夷'});
     fitLessonMap();
     let resizeTimer;
-    new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(fitLessonMap,250);}).observe(document.getElementById('map-container'));
+    new ResizeObserver(()=>{sizeMapCanvas();clearTimeout(resizeTimer);resizeTimer=setTimeout(fitLessonMap,250);}).observe(mapFrame);
   };
   function fitLessonMap(){if(map)map.setFitView(Object.values(markers).map(entry=>entry.marker),true,[65,85,65,65],3);}
   const view=document.createElement('button');view.className='btn';view.id='viewWork';view.textContent='查看作答';view.onclick=showWork;document.querySelector('.header-right').prepend(view);
@@ -1379,6 +1387,7 @@ hideSummary();
   const loader=document.createElement('script');loader.src='https://webapi.amap.com/loader.js';loader.onload=()=>{try{initMap();}catch{mapUnavailable();}};loader.onerror=mapUnavailable;document.head.append(loader);
   setTimeout(()=>{if(!map)mapUnavailable();},10000);
 })();
-function lessonPosition(lng,lat){return new AMap.LngLat(lng < -30 ? lng+360 : lng,lat,true);}
+// Keep canonical longitudes: this renderer misplaces markers beyond +180°.
+function lessonPosition(lng,lat){return new AMap.LngLat(lng,lat);}
 </script></body>
 </html>
