@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <title>孙中山早年的革命活动 · ClassIn课堂版</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>孙中山早年的革命活动 · 学生探究版</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -67,7 +67,7 @@
             font-size: 13px; color: #8B4513; text-align: left;
             padding: 0 16px 14px 16px;
             border-bottom: 1px dashed #C41E3A;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         .timeline-list {
             flex: 1;
@@ -419,15 +419,6 @@
             margin-bottom: 30px; text-align: center;
         }
 
-        .summary-final {
-            font-size: 28px; font-weight: bold; color: #C41E3A;
-            text-align: center; padding: 28px 40px;
-            border-top: 3px solid #C41E3A; border-bottom: 3px solid #C41E3A;
-            max-width: 900px; line-height: 1.6; letter-spacing: 2px;
-            background: linear-gradient(180deg, transparent, rgba(196, 30, 58, 0.05), transparent);
-            margin-top: 10px;
-        }
-
         .discussion-block {
             width: 100%;
             max-width: 900px;
@@ -616,7 +607,10 @@
 
     <div class="timeline-sidebar">
         <h3>时间轴</h3>
-        <div class="timeline-hint">点击地图地点阅读材料，添加到时间轴，再用 ↑↓ 调整顺序。点击“总结”回答问题；点击“查看作答”集中展示排序和答案。</div>
+        <div class="timeline-hint">
+            1.根据课文第一子目的内容，点击地图上的城市坐标，结合材料所反映的事件，将孙中山早年经历进行排序。（点击"添加到时间轴"，把事件加入左侧列表，顺序可通过 ↑↓ 按钮调整）<br>
+            2.完成排序后，请点进总结页共同回答问题。
+        </div>
         <div class="timeline-list" id="timelineList">
             <div class="timeline-empty">还没有添加事件<br>点击地图上的城市开始吧</div>
         </div>
@@ -646,27 +640,25 @@
 <div class="summary-overlay" id="summaryOverlay">
         <h2>孙中山早年革命活动的两次转变</h2>
 
-        <!-- 问题1 -->
+        <!-- 问题一 -->
         <div style="width:100%;max-width:900px;">
             <div style="font-size:24px;font-weight:bold;color:#FF8C00;margin-bottom:16px;">
-                ❓ 问题1：概括孙中山早年思想的两次转变。
+                ❓ 问题一：概括孙中山早年思想的两次转变。
             </div>
 
             <div class="answer-area">
                 <textarea id="answer-q1" placeholder="请概括孙中山早年思想的两次转变……"></textarea>
                 <div class="hint-small">提示：香港、广州→天津→檀香山</div>
                 <div class="answer-actions">
-                    <button class="btn-save" onclick="saveSummaryAnswer('q1')">保存本机答案</button>
+                    <button class="btn-save" onclick="saveSummaryAnswer('q1')">保存答案</button>
                     <span class="save-status" id="save-status-q1"></span>
                 </div>
             </div>
         </div>
 
-        <div class="summary-final">“一个人的行迹，变成了一群人的方向。”</div>
-
-        <!-- 问题2 -->
+        <!-- 问题二 -->
         <div class="discussion-block">
-            <div class="discussion-title">问题2：阅读材料，指出孙中山的地位。做一份人物报道提纲，概述孙中山早年为革命所作的努力。</div>
+            <div class="discussion-title">问题二：阅读材料，指出孙中山的地位。</div>
             <div class="discussion-material">
                 孙逸仙者，近今谈革命者之初祖，实行革命者之北辰，此有耳目者所同认。……孙逸仙者，非一氏之私号，乃新中国新发现之名词也。有孙逸仙，而中国始可为……
                 <span class="material-source">——章士钊《孙逸仙·自序》</span>
@@ -675,7 +667,7 @@
             <div class="answer-area">
                 <textarea id="answer-q2" placeholder="请写出你的回答……"></textarea>
                 <div class="answer-actions">
-                    <button class="btn-save" onclick="saveSummaryAnswer('q2')">保存本机答案</button>
+                    <button class="btn-save" onclick="saveSummaryAnswer('q2')">保存答案</button>
                     <span class="save-status" id="save-status-q2"></span>
                 </div>
             </div>
@@ -740,7 +732,7 @@
             label: "广东香山 · 孙中山诞生地（1866）", type: "dot",
             img: "photo1.png", imgAlt: "童年孙中山听太平天国故事雕塑",
             fact: "1866年，孙中山出生于广东香山（今中山）翠亨村一个农民家庭。童年时，他常听参加过太平天国运动的老人讲述洪秀全等人的故事，在心里埋下了革命的种子。",
-            material: "", materialSource: "", question: "", conflict: "", conflictAnswer: "",
+            material: "", materialSource: "", question: "",
             timeline: { year: "1866", place: "翠亨村", event: "孙中山出生于广东香山翠亨村" }
         },
         {
@@ -752,7 +744,6 @@
             material: "（孙中山认为）医术救人所济有限，……吾国人民之艰苦，皆不良之政治为之。",
             materialSource: "——陈少白《兴中会革命史要》",
             question: "根据材料，指出孙中山的思想转变。",
-            conflict: "", conflictAnswer: "",
             timeline: { year: "1883-1892", place: "香港·广州", event: "学医期间，从“医人”转向“医国”" }
         },
         {
@@ -765,8 +756,6 @@
             material: "材料1：试观日本一国，与西人通商后于我，仿效西方亦后于我，其维新之政为日几何，而今日成效已大有可观。——孙中山《上李鸿章书》，1894年\n\n材料2：革命为惟一法门，……我们必须倾覆满洲政府，建设民国。革命成功之日……废除专制，实行共和。——孙中山《在檀香山正埠荷梯厘街戏院的演说》",
             materialSource: "",
             question: "从材料1到材料2，孙中山的思想又发生了什么转变？",
-            conflict: "上书李鸿章被冷遇后，如果你是他，会怎么办？",
-            conflictAnswer: "失望之余，他认识到，只有推翻清政府的专制统治，才能拯救中国。同年11月，孙中山在檀香山联合华侨，成立兴中会。",
             timeline: { year: "1894", place: "天津", event: "上书李鸿章，从“改良”转向“革命”" }
         },
         {
@@ -779,7 +768,7 @@
             material: "",
             materialSource: "",
             question: "请梳理兴中会的相关信息：",
-            infoTable: true, conflict: "", conflictAnswer: "",
+            infoTable: true,
             timeline: { year: "1894.11", place: "檀香山", event: "成立兴中会——第一个资产阶级革命团体" }
         },
         {
@@ -791,7 +780,6 @@
             material: "“今事虽不成，此心甚慰，但一我可杀，而继我而起者，不可尽杀！”——陆皓东\n\n“中国有史以来，为共和革命而牺牲第一人。”——孙中山评价陆皓东",
             materialSource: "",
             question: "",
-            conflict: "", conflictAnswer: "",
             timeline: { year: "1895.10", place: "广州", event: "筹划广州起义，因泄密失败" }
         },
         {
@@ -801,7 +789,7 @@
             label: "流亡海外，发展革命组织", type: "dot",
             img: "photo4.png", imgAlt: "孙中山断发改装",
             fact: "广州起义失败后，孙中山遭到清政府通缉，被港英当局驱逐出境。从此，他断发改装，流亡海外，先后在日、美、英等国考察社会实际，发展革命组织。",
-            material: "", materialSource: "", question: "", conflict: "", conflictAnswer: "",
+            material: "", materialSource: "", question: "",
             flashPositions: [
                 { name: "日本横滨", lng: 139.64, lat: 35.44, time: "1895.11" },
                 { name: "美国旧金山", lng: -122.42, lat: 37.77, time: "1896.6" },
@@ -820,7 +808,6 @@
             fact: "1896年秋，孙中山在伦敦被清政府使馆人员诱捕，后因英国政府干涉获释。此事在当时成为国际事件，各种报纸争相报道。他借此机会撰文宣扬自己的政治主张，使国际社会对孙中山的革命思想有了一定的认识。",
             material: "", materialSource: "",
             question: "",
-            conflict: "", conflictAnswer: "",
             timeline: { year: "1896.9", place: "伦敦", event: "伦敦蒙难，国际声望提升" }
         }
     ];
@@ -871,15 +858,15 @@ let pauseTimeLeft = 300;
 
             map.addControl(new AMap.Scale({ position: 'LB' }));
 
-
+            restoreTimelineFromStorage();
             createMarkers();
             renderTimeline();
 
-
+            document.addEventListener('keydown', handleKeydown);
         }).catch((e) => {
             console.error("地图加载失败:", e);
             document.getElementById('loadingTip').innerHTML =
-                '地图暂未加载，请检查网络后刷新页面。';
+                '<div style="color:#C41E3A;font-size:24px;">⚠️ 地图加载失败</div><div style="margin-top:8px;font-size:24px;">请检查网络后刷新页面</div>';
         });
     }
 
@@ -950,7 +937,7 @@ let pauseTimeLeft = 300;
     // ==================== 时间轴存储 ====================
     function saveTimelineToStorage() {
         try {
-            safeStorage.setItem('classin_legacy_timeline_items', JSON.stringify(timelineItems));
+            safeStorage.setItem('tongmenghui_timeline_items', JSON.stringify(timelineItems));
         } catch (e) {
             console.warn('保存时间轴失败:', e);
         }
@@ -958,7 +945,7 @@ let pauseTimeLeft = 300;
 
     function restoreTimelineFromStorage() {
         try {
-            const saved = safeStorage.getItem('classin_legacy_timeline_items');
+            const saved = safeStorage.getItem('tongmenghui_timeline_items');
             if (saved) {
                 const arr = JSON.parse(saved);
                 if (Array.isArray(arr)) timelineItems = arr;
@@ -1048,8 +1035,8 @@ let pauseTimeLeft = 300;
 
     // ==================== 点击标记 ====================
     function onMarkerClick(nodeId) {
-        const nodeData = markers[nodeId] || { node: nodes.find(n => n.id === nodeId) };
-        if (!nodeData.node) return;
+        const nodeData = markers[nodeId];
+        if (!nodeData) return;
         const node = nodeData.node;
 
         if (node.flashPositions) {
@@ -1072,7 +1059,7 @@ let pauseTimeLeft = 300;
 
         if (node.img) {
             html += `<img src="${node.img}" alt="${node.imgAlt || ''}" class="card-image"
-                onerror="missingLessonImage(this)">`;
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div style=\\'padding:20px;text-align:center;color:#8B4513;background:#F5F0E8;border-radius:8px;margin-bottom:14px;font-size:24px;border:2px dashed #C41E3A;\\'>📷 图片：${node.imgAlt || node.img}<br><span style=\\'font-size:20px;color:#999;\\'>（请将图片放到同级目录）</span></div>');">`;
         }
 
         if (node.fact) {
@@ -1098,14 +1085,6 @@ let pauseTimeLeft = 300;
             </table>`;
         }
 
-        if (node.conflict) {
-            html += `<div class="card-conflict" id="conflict-${node.id}">${node.conflict}</div>`;
-            html += `<div class="card-conflict-answer" id="conflict-answer-${node.id}">${node.conflictAnswer}</div>`;
-            html += `<div style="text-align:center;margin:10px 0;">
-                <button class="btn" onclick="toggleConflict('${node.id}')" style="border-color:#FF8C00;color:#FF8C00;font-size:20px;">⚡ 想一想</button>
-            </div>`;
-        }
-
         html += `<div class="card-footer">
             <button class="btn-add-timeline ${isAdded ? 'added' : ''}" 
                     id="btn-add-${node.id}"
@@ -1119,15 +1098,6 @@ let pauseTimeLeft = 300;
     }
 
     function revealAnswer(el) { el.classList.add('revealed'); }
-
-    function toggleConflict(nodeId) {
-        const conflictEl = document.getElementById(`conflict-${nodeId}`);
-        const answerEl = document.getElementById(`conflict-answer-${nodeId}`);
-        if (conflictEl && answerEl) {
-            conflictEl.classList.add('show');
-            setTimeout(() => answerEl.classList.add('show'), 500);
-        }
-    }
 
     // ==================== 添加到时间轴 ====================
     function handleAddToTimeline(nodeId) {
@@ -1166,7 +1136,7 @@ let pauseTimeLeft = 300;
         }
     }
 
-    function drawRoute() { if (!map) { showExileCard(); return; }
+    function drawRoute() {
         clearRoute();
         const mainPath = [
             { lng: 113.53, lat: 22.44 },
@@ -1234,7 +1204,7 @@ let pauseTimeLeft = 300;
             </div>
             <div class="exile-dialogue" id="exileDialogue">
                 <img src="photo7.png" alt="孙中山"
-                    onerror="missingLessonImage(this)">
+                    onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div style=\\'padding:20px;text-align:center;color:#8B4513;background:#F5F0E8;border-radius:8px;font-size:24px;border:2px dashed #C41E3A;width:200px;\\'>📷 图片：孙中山（photo7.png）</div>');">
                 <div class="bubble">
                     吾志所向，一往无前，<br>愈挫愈奋，再接再厉！
                 </div>
@@ -1260,7 +1230,7 @@ let pauseTimeLeft = 300;
             time: new Date().toLocaleString('zh-CN')
         };
         try {
-            safeStorage.setItem('classin_legacy_summary_' + qid, JSON.stringify(record));
+            safeStorage.setItem('tongmenghui_summary_' + qid, JSON.stringify(record));
             const statusEl = document.getElementById('save-status-' + qid);
             if (statusEl) statusEl.textContent = '已保存 · ' + record.time;
         } catch (e) {
@@ -1271,7 +1241,7 @@ let pauseTimeLeft = 300;
     function restoreSummaryAnswers() {
         ['q1', 'q2'].forEach(qid => {
             try {
-                const saved = safeStorage.getItem('classin_legacy_summary_' + qid);
+                const saved = safeStorage.getItem('tongmenghui_summary_' + qid);
                 if (!saved) return;
                 const record = JSON.parse(saved);
                 const textarea = document.getElementById('answer-' + qid);
@@ -1287,7 +1257,7 @@ let pauseTimeLeft = 300;
     // ==================== 总结页 ====================
     function showSummary() {
         document.getElementById('summaryOverlay').classList.add('show');
-
+        setTimeout(() => restoreSummaryAnswers(), 100);
     }
     function hideSummary() { document.getElementById('summaryOverlay').classList.remove('show'); }
 
@@ -1302,9 +1272,9 @@ hideSummary();
         clearRoute();
         toggleFlashMarkers(false);
         timelineItems = [];
-        safeStorage.removeItem('classin_legacy_timeline_items');
-        safeStorage.removeItem('classin_legacy_summary_q1');
-        safeStorage.removeItem('classin_legacy_summary_q2');
+        safeStorage.removeItem('tongmenghui_timeline_items');
+        safeStorage.removeItem('tongmenghui_summary_q1');
+        safeStorage.removeItem('tongmenghui_summary_q2');
         ['q1', 'q2'].forEach(qid => {
             const ta = document.getElementById('answer-' + qid);
             if (ta) ta.value = '';
@@ -1320,7 +1290,6 @@ hideSummary();
 
     // ==================== 键盘 ====================
     function handleKeydown(e) {
-        if (e.target.closest('input, textarea, select, [contenteditable]') || e.isComposing) return;
         if (e.key === 'r' || e.key === 'R') resetAll();
         if (e.key === 'l' || e.key === 'L') toggleRoute();
         if (e.key === 'Escape') closeInfoWindow();
@@ -1334,7 +1303,7 @@ hideSummary();
     });
 
     // ==================== 页面加载 ====================
-
+    
     </script>
 <script>function missingLessonImage(img) {
   const placeholder = document.createElement('div');
@@ -1362,8 +1331,6 @@ hideSummary();
   restoreSummaryAnswers=function(){['q1','q2'].forEach(q=>{const text=read(q);if(typeof text==='string')document.getElementById('answer-'+q).value=text;});};
   ['q1','q2'].forEach(q=>{const field=document.getElementById('answer-'+q);field.maxLength=5000;field.setAttribute('aria-label',q==='q1'?'问题1答案':'问题2答案');field.addEventListener('input',()=>saveSummaryAnswer(q));});
   const originalCreateMarkers=createMarkers;
-  // City-level location, not the precise historical meeting venue.
-  nodes.find(node=>node.id==='xiangshan_zhong').fact='檀香山（Honolulu）位于太平洋中部、夏威夷群岛的瓦胡岛，约北纬21.31°、西经157.86°。地图标记表示城市位置。';
   createMarkers=function(){
     originalCreateMarkers();
     nodes.forEach(node=>{const entry=markers[node.id];entry.marker.setPosition(lessonPosition(node.lng,node.lat));entry.wrapper.setAttribute('role','button');entry.wrapper.setAttribute('aria-label',node.name);entry.wrapper.tabIndex=0;entry.wrapper.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onMarkerClick(node.id);}});});
@@ -1379,7 +1346,7 @@ hideSummary();
   const sheet=document.createElement('dialog');sheet.id='workSheet';sheet.innerHTML='<header><h2>我的作答</h2><button class="btn" id="closeWork">返回课件</button></header><main id="workContent"></main>';
   document.body.append(sheet);document.getElementById('closeWork').onclick=()=>sheet.close();
   function showWork(){const content=document.getElementById('workContent');content.replaceChildren();const heading=document.createElement('h3');heading.textContent='时间轴排序';content.append(heading);if(!timelineItems.length){const p=document.createElement('p');p.textContent='还没有添加事件';content.append(p);}else{const list=document.createElement('ol');list.className='work-timeline';timelineItems.forEach(item=>{const li=document.createElement('li');const title=document.createElement('b');title.textContent=item.place+' · '+item.year;const p=document.createElement('p');p.textContent=item.event;li.append(title,p);list.append(li);});content.append(list);}
-   ['q1','q2'].forEach((q,i)=>{const h=document.createElement('h3');h.textContent=i===0?'问题1 · 孙中山早年思想的两次转变':'问题2 · 孙中山的地位与早年的革命努力';const answer=document.createElement('p');answer.className='work-answer';answer.textContent=document.getElementById('answer-'+q).value||'尚未作答';content.append(h,answer);});sheet.showModal();}
+   ['q1','q2'].forEach(q=>{const h=document.createElement('h3');const field=document.getElementById('answer-'+q);h.textContent=field.closest('.answer-area').parentElement.firstElementChild.textContent.trim();const answer=document.createElement('p');answer.className='work-answer';answer.textContent=field.value||'尚未作答';content.append(h,answer);});sheet.showModal();}
   resetAll=function(){if(!confirm('清空这台设备上的排序和两道题答案？其他设备不受影响。'))return;closeInfoWindow();hideSummary();sheet.close();clearRoute();toggleFlashMarkers(false);routeShown=false;exileCardShown=false;document.getElementById('btnRoute').classList.remove('active');timelineItems=[];renderTimeline();refreshMarkerColors();saveTimelineToStorage();['q1','q2'].forEach(q=>{document.getElementById('answer-'+q).value='';saveSummaryAnswer(q);});fitLessonMap();};
   restoreTimelineFromStorage();restoreSummaryAnswers();status.textContent='作答仅保留在本机，通过 ClassIn 查看学生画面';
   document.addEventListener('keydown',handleKeydown);
