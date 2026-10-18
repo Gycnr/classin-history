@@ -406,7 +406,6 @@
             border-right: 13px solid #FFF3E0;
         }
 
-        /* ========== 悬浮小计时器（不遮挡界面） ========== */
         .summary-overlay {
             display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(253, 245, 230, 0.98); z-index: 7000;
@@ -422,7 +421,7 @@
         .discussion-block {
             width: 100%;
             max-width: 900px;
-            margin-top: 30px;
+            margin-top: 10px;
             background: #FFF8F0;
             border: 3px solid #FF8C00;
             border-radius: 14px;
@@ -435,6 +434,7 @@
             color: #FF8C00;
             margin-bottom: 16px;
             letter-spacing: 1px;
+            line-height: 1.6;
         }
         .discussion-title::before {
             content: '❓ ';
@@ -481,7 +481,7 @@
         }
         .answer-area textarea {
             width: 100%;
-            min-height: 100px;
+            min-height: 120px;
             border: 2px solid #dce3ed;
             border-radius: 8px;
             padding: 10px 12px;
@@ -636,29 +636,12 @@
         <div class="node-card" id="modalCard"></div>
     </div>
 
-    <!-- 悬浮小计时器 -->
-<div class="summary-overlay" id="summaryOverlay">
+    <div class="summary-overlay" id="summaryOverlay">
         <h2>孙中山早年革命活动的两次转变</h2>
 
-        <!-- 问题一 -->
-        <div style="width:100%;max-width:900px;">
-            <div style="font-size:24px;font-weight:bold;color:#FF8C00;margin-bottom:16px;">
-                ❓ 问题一：概括孙中山早年思想的两次转变。
-            </div>
-
-            <div class="answer-area">
-                <textarea id="answer-q1" placeholder="请概括孙中山早年思想的两次转变……"></textarea>
-                <div class="hint-small">提示：香港、广州→天津→檀香山</div>
-                <div class="answer-actions">
-                    <button class="btn-save" onclick="saveSummaryAnswer('q1')">保存答案</button>
-                    <span class="save-status" id="save-status-q1"></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 问题二 -->
+        <!-- 问题 -->
         <div class="discussion-block">
-            <div class="discussion-title">问题二：阅读材料，指出孙中山的地位。</div>
+            <div class="discussion-title">问题：阅读材料，指出孙中山的地位。结合时间轴和孙中山的2次思想转变，准备一份孙中山人物报道提纲。</div>
             <div class="discussion-material">
                 孙逸仙者，近今谈革命者之初祖，实行革命者之北辰，此有耳目者所同认。……孙逸仙者，非一氏之私号，乃新中国新发现之名词也。有孙逸仙，而中国始可为……
                 <span class="material-source">——章士钊《孙逸仙·自序》</span>
@@ -744,7 +727,7 @@
             material: "（孙中山认为）医术救人所济有限，……吾国人民之艰苦，皆不良之政治为之。",
             materialSource: "——陈少白《兴中会革命史要》",
             question: "根据材料，指出孙中山的思想转变。",
-            timeline: { year: "1883-1892", place: "香港·广州", event: "学医期间，从“医人”转向“医国”" }
+            timeline: { year: "1883-1892", place: "香港·广州", event: "行医期间，思想第一次转变" }
         },
         {
             id: "tianjin", name: "天津",
@@ -756,7 +739,7 @@
             material: "材料1：试观日本一国，与西人通商后于我，仿效西方亦后于我，其维新之政为日几何，而今日成效已大有可观。——孙中山《上李鸿章书》，1894年\n\n材料2：革命为惟一法门，……我们必须倾覆满洲政府，建设民国。革命成功之日……废除专制，实行共和。——孙中山《在檀香山正埠荷梯厘街戏院的演说》",
             materialSource: "",
             question: "从材料1到材料2，孙中山的思想又发生了什么转变？",
-            timeline: { year: "1894", place: "天津", event: "上书李鸿章，从“改良”转向“革命”" }
+            timeline: { year: "1894", place: "天津", event: "上书李鸿章，思想第二次转变" }
         },
         {
             id: "xiangshan_zhong", name: "檀香山",
@@ -780,7 +763,7 @@
             material: "“今事虽不成，此心甚慰，但一我可杀，而继我而起者，不可尽杀！”——陆皓东\n\n“中国有史以来，为共和革命而牺牲第一人。”——孙中山评价陆皓东",
             materialSource: "",
             question: "",
-            timeline: { year: "1895.10", place: "广州", event: "筹划广州起义，因泄密失败" }
+            timeline: { year: "1895.10", place: "广州", event: "筹划广州起义，因泄密失败，陆皓东牺牲" }
         },
         {
             id: "liuwang", name: "流亡海外",
@@ -819,7 +802,6 @@
     let polylines = [];
     let routeShown = false;
     let exileCardShown = false;
-let pauseTimeLeft = 300;
     let timelineItems = [];
 
     const GLOBAL_CENTER = [160, 25];
@@ -943,13 +925,27 @@ let pauseTimeLeft = 300;
         }
     }
 
+    // 恢复时用 nodes 中的最新文字覆盖，避免旧缓存显示过期内容
     function restoreTimelineFromStorage() {
         try {
             const saved = safeStorage.getItem('tongmenghui_timeline_items');
-            if (saved) {
-                const arr = JSON.parse(saved);
-                if (Array.isArray(arr)) timelineItems = arr;
-            }
+            if (!saved) return;
+            const arr = JSON.parse(saved);
+            if (!Array.isArray(arr)) return;
+
+            timelineItems = arr
+                .filter(item => item && nodes.some(n => n.id === item.nodeId))
+                .map(item => {
+                    const node = nodes.find(n => n.id === item.nodeId);
+                    return {
+                        nodeId: node.id,
+                        year: node.timeline.year,
+                        place: node.timeline.place,
+                        event: node.timeline.event
+                    };
+                });
+
+            saveTimelineToStorage();
         } catch (e) {
             console.warn('恢复时间轴失败:', e);
             timelineItems = [];
@@ -1239,7 +1235,7 @@ let pauseTimeLeft = 300;
     }
 
     function restoreSummaryAnswers() {
-        ['q1', 'q2'].forEach(qid => {
+        ['q2'].forEach(qid => {
             try {
                 const saved = safeStorage.getItem('tongmenghui_summary_' + qid);
                 if (!saved) return;
@@ -1265,7 +1261,7 @@ let pauseTimeLeft = 300;
     function resetAll() {
         if (!confirm('确定要清空所有时间轴和答案吗？')) return;
         closeInfoWindow();
-hideSummary();
+        hideSummary();
         routeShown = false;
         exileCardShown = false;
         document.getElementById('btnRoute').classList.remove('active');
@@ -1275,7 +1271,7 @@ hideSummary();
         safeStorage.removeItem('tongmenghui_timeline_items');
         safeStorage.removeItem('tongmenghui_summary_q1');
         safeStorage.removeItem('tongmenghui_summary_q2');
-        ['q1', 'q2'].forEach(qid => {
+        ['q2'].forEach(qid => {
             const ta = document.getElementById('answer-' + qid);
             if (ta) ta.value = '';
             const st = document.getElementById('save-status-' + qid);
@@ -1290,6 +1286,10 @@ hideSummary();
 
     // ==================== 键盘 ====================
     function handleKeydown(e) {
+        // 在输入框内打字时不触发快捷键，避免误清空
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'textarea' || tag === 'input' || (e.target && e.target.isContentEditable)) return;
+
         if (e.key === 'r' || e.key === 'R') resetAll();
         if (e.key === 'l' || e.key === 'L') toggleRoute();
         if (e.key === 'Escape') closeInfoWindow();
@@ -1320,6 +1320,7 @@ hideSummary();
     mapCanvas.style.cssText='width:'+mapFrame.clientWidth/scale+'px;height:'+mapFrame.clientHeight/scale+'px;transform-origin:top left;transform:scale('+scale+');';
   }
   sizeMapCanvas();
+  const questionIds=Array.from(document.querySelectorAll('#summaryOverlay textarea[id^=answer-]'),field=>field.id.slice(7));
   const prefix='classin_history_v1:';
   const status=document.createElement('div');status.id='localSaveStatus';status.className='local-status';status.setAttribute('role','status');
   document.querySelector('.timeline-sidebar').append(status);
@@ -1328,8 +1329,8 @@ hideSummary();
   saveTimelineToStorage=function(){save('timeline',timelineItems.map(item=>item.nodeId));};
   restoreTimelineFromStorage=function(){const ids=read('timeline');timelineItems=(Array.isArray(ids)?[...new Set(ids)]:[]).map(id=>nodes.find(n=>n.id===id)).filter(Boolean).map(n=>({nodeId:n.id,...n.timeline}));renderTimeline();};
   saveSummaryAnswer=function(qid){const field=document.getElementById('answer-'+qid);document.getElementById('save-status-'+qid).textContent=save(qid,field.value);};
-  restoreSummaryAnswers=function(){['q1','q2'].forEach(q=>{const text=read(q);if(typeof text==='string')document.getElementById('answer-'+q).value=text;});};
-  ['q1','q2'].forEach(q=>{const field=document.getElementById('answer-'+q);field.maxLength=5000;field.setAttribute('aria-label',q==='q1'?'问题1答案':'问题2答案');field.addEventListener('input',()=>saveSummaryAnswer(q));});
+  restoreSummaryAnswers=function(){questionIds.forEach(q=>{const text=read(q);if(typeof text==='string')document.getElementById('answer-'+q).value=text;});};
+  questionIds.forEach(q=>{const field=document.getElementById('answer-'+q);field.maxLength=5000;field.setAttribute('aria-label','问题答案');field.addEventListener('input',()=>saveSummaryAnswer(q));});
   const originalCreateMarkers=createMarkers;
   createMarkers=function(){
     originalCreateMarkers();
@@ -1346,8 +1347,8 @@ hideSummary();
   const sheet=document.createElement('dialog');sheet.id='workSheet';sheet.innerHTML='<header><h2>我的作答</h2><button class="btn" id="closeWork">返回课件</button></header><main id="workContent"></main>';
   document.body.append(sheet);document.getElementById('closeWork').onclick=()=>sheet.close();
   function showWork(){const content=document.getElementById('workContent');content.replaceChildren();const heading=document.createElement('h3');heading.textContent='时间轴排序';content.append(heading);if(!timelineItems.length){const p=document.createElement('p');p.textContent='还没有添加事件';content.append(p);}else{const list=document.createElement('ol');list.className='work-timeline';timelineItems.forEach(item=>{const li=document.createElement('li');const title=document.createElement('b');title.textContent=item.place+' · '+item.year;const p=document.createElement('p');p.textContent=item.event;li.append(title,p);list.append(li);});content.append(list);}
-   ['q1','q2'].forEach(q=>{const h=document.createElement('h3');const field=document.getElementById('answer-'+q);h.textContent=field.closest('.answer-area').parentElement.firstElementChild.textContent.trim();const answer=document.createElement('p');answer.className='work-answer';answer.textContent=field.value||'尚未作答';content.append(h,answer);});sheet.showModal();}
-  resetAll=function(){if(!confirm('清空这台设备上的排序和两道题答案？其他设备不受影响。'))return;closeInfoWindow();hideSummary();sheet.close();clearRoute();toggleFlashMarkers(false);routeShown=false;exileCardShown=false;document.getElementById('btnRoute').classList.remove('active');timelineItems=[];renderTimeline();refreshMarkerColors();saveTimelineToStorage();['q1','q2'].forEach(q=>{document.getElementById('answer-'+q).value='';saveSummaryAnswer(q);});fitLessonMap();};
+   questionIds.forEach(q=>{const h=document.createElement('h3');const field=document.getElementById('answer-'+q);h.textContent=field.closest('.answer-area').parentElement.firstElementChild.textContent.trim();const answer=document.createElement('p');answer.className='work-answer';answer.textContent=field.value||'尚未作答';content.append(h,answer);});sheet.showModal();}
+  resetAll=function(){if(!confirm('清空这台设备上的排序和答案？其他设备不受影响。'))return;closeInfoWindow();hideSummary();sheet.close();clearRoute();toggleFlashMarkers(false);routeShown=false;exileCardShown=false;document.getElementById('btnRoute').classList.remove('active');timelineItems=[];renderTimeline();refreshMarkerColors();saveTimelineToStorage();questionIds.forEach(q=>{document.getElementById('answer-'+q).value='';saveSummaryAnswer(q);});fitLessonMap();};
   restoreTimelineFromStorage();restoreSummaryAnswers();status.textContent='作答仅保留在本机，通过 ClassIn 查看学生画面';
   document.addEventListener('keydown',handleKeydown);
   function mapUnavailable(){document.getElementById('loadingTip').textContent='地图暂未加载，请检查网络后刷新页面。已保存的排序和答案仍保留在本机。';}
@@ -1356,5 +1357,6 @@ hideSummary();
 })();
 // Keep canonical longitudes: this renderer misplaces markers beyond +180°.
 function lessonPosition(lng,lat){return new AMap.LngLat(lng,lat);}
+
 </script></body>
 </html>
