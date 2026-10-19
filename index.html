@@ -64,10 +64,10 @@
             font-weight: bold;
         }
         .timeline-hint {
-            font-size: 13px; color: #8B4513; text-align: left;
+            font-size: 16px; color: #8B4513; text-align: left;
             padding: 0 16px 14px 16px;
             border-bottom: 1px dashed #C41E3A;
-            line-height: 1.7;
+            line-height: 1.8;
         }
         .timeline-list {
             flex: 1;
@@ -110,7 +110,16 @@
             align-items: center;
             justify-content: center;
         }
-        .ti-body { flex: 1; min-width: 0; }
+        .ti-body {
+            flex: 1;
+            min-width: 0;
+            cursor: pointer;
+            border-radius: 6px;
+            padding: 2px 4px;
+            margin: -2px -4px;
+            transition: background 0.15s;
+        }
+        .ti-body:hover { background: #FFF3E0; }
         .ti-year {
             font-size: 12px; color: #8B4513;
             font-weight: bold; margin-bottom: 2px;
@@ -123,6 +132,12 @@
             font-size: 13px; color: #333;
             line-height: 1.5;
             word-break: break-word;
+        }
+        .ti-hint {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
         }
         .ti-controls {
             flex-shrink: 0;
@@ -464,65 +479,26 @@
             margin-top: 8px;
         }
 
-        .hint-small {
-            font-size: 16px;
-            color: #999;
-            margin-top: 6px;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .answer-area {
-            margin-top: 12px;
-            background: #fff;
-            border-radius: 10px;
-            padding: 14px 16px;
-            border: 2px solid #dce3ed;
-        }
-        .answer-area textarea {
-            width: 100%;
-            min-height: 120px;
-            border: 2px solid #dce3ed;
-            border-radius: 8px;
-            padding: 10px 12px;
-            font-size: 20px;
-            font-family: inherit;
-            line-height: 1.6;
-            resize: vertical;
-            outline: none;
-            background: #fafbfd;
-            color: #2C1810;
-            -webkit-user-select: text !important;
-            user-select: text !important;
-            touch-action: manipulation;
-        }
-        .answer-area textarea:focus {
-            border-color: #2d5fa0;
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(45, 95, 160, 0.15);
-        }
-        .answer-actions {
-            margin-top: 10px;
+        /* 小组讨论提示（替代原答题框） */
+        .group-tip {
             display: flex;
             align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            background: #FFF3E0;
+            border: 3px dashed #FF8C00;
+            border-radius: 12px;
+            padding: 22px 24px;
+            font-size: 26px;
+            font-weight: bold;
+            color: #C41E3A;
+            letter-spacing: 2px;
+            line-height: 1.6;
+            text-align: center;
         }
-        .btn-save {
-            padding: 8px 20px;
-            background: #2d5fa0;
-            color: #fff;
-            border: none;
-            border-radius: 9px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            min-height: 44px;
-        }
-        .btn-save:hover { background: #1a3a6b; }
-        .save-status {
-            font-size: 16px;
-            color: #27ae60;
+        .group-tip .tip-icon {
+            font-size: 34px;
+            line-height: 1;
         }
 
         .summary-close {
@@ -561,6 +537,7 @@
             .exile-dialogue img { width: 160px; }
             .exile-dialogue .bubble { font-size: 22px; padding: 20px 24px; }
             .card-image { width: 65%; max-width: 400px; }
+            .timeline-hint { font-size: 15px; }
         }
 
         @media (max-width: 700px) {
@@ -589,6 +566,7 @@
     </style>
 <style>:root{--lesson-top:64px}.header-bar{top:0;height:64px}.timeline-sidebar,#map-container{top:var(--lesson-top)}.timeline-sidebar{width:340px}#map-container{left:340px}.timeline-list{min-height:100px}.timeline-hint{font-size:13px}.location-picker{margin:8px 12px;flex-shrink:0}.location-picker summary{cursor:pointer;font-size:13px;color:#8b4513}.location-choices{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.location-choices button{font:inherit;font-size:14px;min-height:42px;background:white;border:1px solid #d7bfb0;border-radius:6px;padding:8px;color:#8b2638;cursor:pointer}.local-status{padding:12px;font-size:12px;line-height:1.7;color:#725a42;border-top:1px solid #dec8b1}.image-placeholder{padding:18px;border:1px dashed #cdb89c;background:#f3eadc;color:#856e57;text-align:center;font-size:16px;border-radius:8px}.ti-btn{width:34px;height:34px}.node-card{max-width:calc(100vw - 32px);max-height:90dvh}.loading-tip{left:calc(50% + 170px);max-width:350px;pointer-events:none;line-height:1.8}.save-status{font-size:13px;color:#27643e;line-height:1.6}.btn-save{min-height:44px}button:focus-visible,summary:focus-visible{outline:3px solid #286bbb;outline-offset:3px}#workSheet{width:100vw;height:100dvh;max-width:100vw;max-height:100dvh;margin:0;border:0;background:#fdf5e6;color:#2c1810;padding:0}#workSheet header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 28px;background:#fdf5e6;border-bottom:2px solid #c41e3a;z-index:1}#workSheet h2{color:#c41e3a;font-size:26px}#workSheet main{max-width:1100px;margin:auto;padding:24px 32px}#workSheet h3{font-size:23px;color:#c41e3a;margin:16px 0}.work-timeline{counter-reset:events;list-style:none;padding:0;display:grid;gap:10px}.work-timeline li{counter-increment:events;position:relative;padding:14px 20px 14px 65px;border:1px solid #e0cbb9;background:#fffaf2;border-radius:10px}.work-timeline li:before{content:counter(events);position:absolute;left:16px;top:16px;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:#c41e3a;color:white;font-weight:bold}.work-timeline b{font-size:21px}.work-timeline p{font-size:18px;margin-top:6px;line-height:1.5}.work-answer{white-space:pre-wrap;overflow-wrap:anywhere;font-size:24px;line-height:1.8;padding:20px;background:#fffaf2;border-left:4px solid #c41e3a;margin-bottom:24px}@media(max-width:1100px){.header-left h1{font-size:15px;max-width:250px}.lesson-tag{display:none}.header-right{gap:5px}.header-right .btn{padding:8px 10px}.timeline-sidebar{width:310px}#map-container{left:310px}.loading-tip{left:calc(50% + 155px);max-width:260px}.footer-note{left:320px}}@media(max-width:720px){:root{--lesson-top:100px}.header-bar{height:100px;flex-wrap:wrap;justify-content:center;gap:5px;padding:8px}.header-left h1{max-width:none;font-size:14px}.timeline-sidebar{width:52%}#map-container{left:52%}.timeline-hint{font-size:12px}.timeline-item{flex-wrap:wrap}.ti-controls{flex-direction:row;margin-left:auto}.legend,.footer-note{display:none}.loading-tip{left:76%;width:42%;font-size:14px;padding:8px}.card-fact,.card-material,.discussion-title,.discussion-material{font-size:19px}.node-card{padding:20px 16px}.summary-overlay{padding:24px 12px}#workSheet main{padding:16px}.work-answer{font-size:21px}.work-timeline b{font-size:19px}}
 @media(max-width:900px) and (orientation:portrait){#map-container{left:0;right:0;top:var(--lesson-top);bottom:45vh}.timeline-sidebar{left:0;right:0;top:55vh;bottom:0;width:100%;border-right:0;border-top:2px solid #c41e3a}.timeline-sidebar h3{padding:8px}.timeline-hint{padding:0 12px 8px}.timeline-list{display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:8px;padding:10px}.timeline-item{margin-bottom:0}.loading-tip{left:50%;top:30vh;max-width:80vw}.legend{display:none}.footer-note{display:none}}
+.work-material-button{border:0;background:transparent;color:#765341;padding:8px 0;font:inherit;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}#workMaterial{padding:0;border:0;background:transparent;max-width:calc(100vw - 32px);max-height:90dvh;margin:auto}#workMaterial::backdrop{background:rgba(0,0,0,.45)}#workMaterial .node-card{display:block;position:relative;margin:0;overflow:auto;max-height:85dvh}
 </style></head>
 <body>
 
@@ -609,7 +587,7 @@
         <h3>时间轴</h3>
         <div class="timeline-hint">
             1.根据课文第一子目的内容，点击地图上的城市坐标，结合材料所反映的事件，将孙中山早年经历进行排序。（点击"添加到时间轴"，把事件加入左侧列表，顺序可通过 ↑↓ 按钮调整）<br>
-            2.完成排序后，请点进总结页共同回答问题。
+            2.完成排序后，请点进总结页共同思考问题。
         </div>
         <div class="timeline-list" id="timelineList">
             <div class="timeline-empty">还没有添加事件<br>点击地图上的城市开始吧</div>
@@ -637,22 +615,18 @@
     </div>
 
     <div class="summary-overlay" id="summaryOverlay">
-        <h2>孙中山早年革命活动的两次转变</h2>
+        <h2>报道：孙中山的早年革命活动</h2>
 
-        <!-- 问题 -->
         <div class="discussion-block">
-            <div class="discussion-title">问题：阅读材料，指出孙中山的地位。结合时间轴和孙中山的2次思想转变，准备一份孙中山人物报道提纲。</div>
+            <div class="discussion-title">结合时间轴，根据材料，为孙中山的报道写一份简要的报道提纲。</div>
             <div class="discussion-material">
                 孙逸仙者，近今谈革命者之初祖，实行革命者之北辰，此有耳目者所同认。……孙逸仙者，非一氏之私号，乃新中国新发现之名词也。有孙逸仙，而中国始可为……
                 <span class="material-source">——章士钊《孙逸仙·自序》</span>
             </div>
 
-            <div class="answer-area">
-                <textarea id="answer-q2" placeholder="请写出你的回答……"></textarea>
-                <div class="answer-actions">
-                    <button class="btn-save" onclick="saveSummaryAnswer('q2')">保存答案</button>
-                    <span class="save-status" id="save-status-q2"></span>
-                </div>
+            <div class="group-tip">
+                <span class="tip-icon">👥</span>
+                <span>小组讨论，写在学案上</span>
             </div>
         </div>
 
@@ -968,10 +942,11 @@
             const isLast = idx === timelineItems.length - 1;
             html += `<div class="timeline-item">
                 <div class="ti-num">${idx + 1}</div>
-                <div class="ti-body">
+                <div class="ti-body" onclick="openTimelineNode('${item.nodeId}')" title="点击查看该地点的材料">
                     <div class="ti-year">${item.year}</div>
                     <div class="ti-place">${item.place}</div>
                     <div class="ti-event">${item.event}</div>
+                    <div class="ti-hint">🔍 点击查看材料</div>
                 </div>
                 <div class="ti-controls">
                     <button class="ti-btn" onclick="moveUp(${idx})" ${isFirst ? 'disabled' : ''} title="上移">▲</button>
@@ -981,6 +956,12 @@
             </div>`;
         });
         list.innerHTML = html;
+    }
+
+    // ==================== 时间轴节点点击查看材料 ====================
+    function openTimelineNode(nodeId) {
+        if (!nodeId) return;
+        onMarkerClick(nodeId);
     }
 
     // ==================== 时间轴操作 ====================
@@ -1215,45 +1196,9 @@
         if (d) d.classList.add('show');
     }
 
-    // ==================== 总结页答案保存 ====================
-    function saveSummaryAnswer(qid) {
-        const textarea = document.getElementById('answer-' + qid);
-        if (!textarea) return;
-        const text = textarea.value.trim();
-        if (!text) { alert('请先写下你的答案'); return; }
-        const record = {
-            answer: text,
-            time: new Date().toLocaleString('zh-CN')
-        };
-        try {
-            safeStorage.setItem('tongmenghui_summary_' + qid, JSON.stringify(record));
-            const statusEl = document.getElementById('save-status-' + qid);
-            if (statusEl) statusEl.textContent = '已保存 · ' + record.time;
-        } catch (e) {
-            alert('保存失败，请检查浏览器设置');
-        }
-    }
-
-    function restoreSummaryAnswers() {
-        ['q2'].forEach(qid => {
-            try {
-                const saved = safeStorage.getItem('tongmenghui_summary_' + qid);
-                if (!saved) return;
-                const record = JSON.parse(saved);
-                const textarea = document.getElementById('answer-' + qid);
-                if (textarea && record.answer) {
-                    textarea.value = record.answer;
-                    const statusEl = document.getElementById('save-status-' + qid);
-                    if (statusEl) statusEl.textContent = '上次保存 · ' + record.time;
-                }
-            } catch (e) {}
-        });
-    }
-
     // ==================== 总结页 ====================
     function showSummary() {
         document.getElementById('summaryOverlay').classList.add('show');
-        setTimeout(() => restoreSummaryAnswers(), 100);
     }
     function hideSummary() { document.getElementById('summaryOverlay').classList.remove('show'); }
 
@@ -1271,12 +1216,6 @@
         safeStorage.removeItem('tongmenghui_timeline_items');
         safeStorage.removeItem('tongmenghui_summary_q1');
         safeStorage.removeItem('tongmenghui_summary_q2');
-        ['q2'].forEach(qid => {
-            const ta = document.getElementById('answer-' + qid);
-            if (ta) ta.value = '';
-            const st = document.getElementById('save-status-' + qid);
-            if (st) st.textContent = '';
-        });
         renderTimeline();
         refreshMarkerColors();
         if (map) {
@@ -1346,8 +1285,14 @@
   const view=document.createElement('button');view.className='btn';view.id='viewWork';view.textContent='查看作答';view.onclick=showWork;document.querySelector('.header-right').prepend(view);
   const sheet=document.createElement('dialog');sheet.id='workSheet';sheet.innerHTML='<header><h2>我的作答</h2><button class="btn" id="closeWork">返回课件</button></header><main id="workContent"></main>';
   document.body.append(sheet);document.getElementById('closeWork').onclick=()=>sheet.close();
-  function showWork(){const content=document.getElementById('workContent');content.replaceChildren();const heading=document.createElement('h3');heading.textContent='时间轴排序';content.append(heading);if(!timelineItems.length){const p=document.createElement('p');p.textContent='还没有添加事件';content.append(p);}else{const list=document.createElement('ol');list.className='work-timeline';timelineItems.forEach(item=>{const li=document.createElement('li');const title=document.createElement('b');title.textContent=item.place+' · '+item.year;const p=document.createElement('p');p.textContent=item.event;li.append(title,p);list.append(li);});content.append(list);}
-   questionIds.forEach(q=>{const h=document.createElement('h3');const field=document.getElementById('answer-'+q);h.textContent=field.closest('.answer-area').parentElement.firstElementChild.textContent.trim();const answer=document.createElement('p');answer.className='work-answer';answer.textContent=field.value||'尚未作答';content.append(h,answer);});sheet.showModal();}
+  const materialSheet=document.createElement('dialog');materialSheet.id='workMaterial';materialSheet.setAttribute('aria-label','地点材料');document.body.append(materialSheet);
+  const originalCloseInfoWindow=closeInfoWindow;
+  closeInfoWindow=function(){materialSheet.close();originalCloseInfoWindow();};
+  materialSheet.addEventListener('click',event=>{if(event.target===materialSheet)materialSheet.close();});
+  materialSheet.addEventListener('keydown',event=>{if(event.key==='Escape')event.stopPropagation();});
+  function showWorkMaterial(nodeId){const node=nodes.find(item=>item.id===nodeId);if(!node)return;materialSheet.innerHTML='<div class="node-card">'+buildCardHtml(node)+'</div>';materialSheet.showModal();}
+  function showWork(){const content=document.getElementById('workContent');content.replaceChildren();const heading=document.createElement('h3');heading.textContent='时间轴排序';content.append(heading);if(!timelineItems.length){const p=document.createElement('p');p.textContent='还没有添加事件';content.append(p);}else{const list=document.createElement('ol');list.className='work-timeline';timelineItems.forEach(item=>{const li=document.createElement('li');const title=document.createElement('b');title.textContent=item.place+' · '+item.year;const p=document.createElement('p');p.textContent=item.event;const materialButton=document.createElement('button');materialButton.className='work-material-button';materialButton.textContent='🔍 点击查看材料';materialButton.setAttribute('aria-label','查看'+item.place+'材料');materialButton.onclick=()=>showWorkMaterial(item.nodeId);li.append(title,p,materialButton);list.append(li);});content.append(list);}
+   questionIds.forEach(q=>{const h=document.createElement('h3');const field=document.getElementById('answer-'+q);h.textContent=field.closest('.answer-area').parentElement.firstElementChild.textContent.trim();const answer=document.createElement('p');answer.className='work-answer';answer.textContent=field.value||'尚未作答';content.append(h,answer);});if(!questionIds.length){const report=document.querySelector('#summaryOverlay .discussion-block');if(report)content.append(report.cloneNode(true));}sheet.showModal();}
   resetAll=function(){if(!confirm('清空这台设备上的排序和答案？其他设备不受影响。'))return;closeInfoWindow();hideSummary();sheet.close();clearRoute();toggleFlashMarkers(false);routeShown=false;exileCardShown=false;document.getElementById('btnRoute').classList.remove('active');timelineItems=[];renderTimeline();refreshMarkerColors();saveTimelineToStorage();questionIds.forEach(q=>{document.getElementById('answer-'+q).value='';saveSummaryAnswer(q);});fitLessonMap();};
   restoreTimelineFromStorage();restoreSummaryAnswers();status.textContent='作答仅保留在本机，通过 ClassIn 查看学生画面';
   document.addEventListener('keydown',handleKeydown);
@@ -1357,6 +1302,7 @@
 })();
 // Keep canonical longitudes: this renderer misplaces markers beyond +180°.
 function lessonPosition(lng,lat){return new AMap.LngLat(lng,lat);}
+
 
 </script></body>
 </html>
